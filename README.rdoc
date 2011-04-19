@@ -1,0 +1,32 @@
+= UniMIDI
+
+Author:: Ari Russo
+Copyright:: Copyright (c) 2011 Ari Russo
+
+== Summary
+
+Realtime MIDI input and output for Ruby
+
+== Features
+
+* Multiple platforms supported (currently Linux, Windows/Cygwin, more to follow)
+* Handle both input and output
+* Supports messaging to and from multiple devices concurrently
+
+== Requirements
+
+* Linux: {alsa-rawmidi}[http://github.com/arirusso/alsa-rawmidi]
+* Windows/Cygwin: {midi-winmm}[https://github.com/arirusso/midi-winmm] 
+	
+== Install
+
+* gem install unimidi
+	
+== Examples
+
+* {input}[http://github.com/arirusso/unimidi/blob/master/examples/input.rb]
+* {output}[http://github.com/arirusso/unimidi/blob/master/examples/output.rb]
+	
+== License
+
+Apache 2.0, See the file LICENSE  
