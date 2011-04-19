@@ -8,6 +8,7 @@ module UniMIDI
  
 end
 
+require 'unimidi/congruous_api_adapter'
 require 'unimidi/platform'
 
 module UniMIDI

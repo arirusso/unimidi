@@ -26,6 +26,14 @@ Realtime MIDI input and output for Ruby
 
 * {input}[http://github.com/arirusso/unimidi/blob/master/examples/input.rb]
 * {output}[http://github.com/arirusso/unimidi/blob/master/examples/output.rb]
+
+== Tests
+
+* please see {test/config.rb}[http://github.com/arirusso/unimidi/blob/master/test/config.rb] before running tests
+
+== Documentation
+
+* {rdoc}[http://rdoc.info/gems/unimidi]
 	
 == License
 

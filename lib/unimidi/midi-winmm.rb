@@ -1,17 +1,17 @@
 module UniMIDI
 
-  module AlsaRawMIDIAdapter
+  module MIDIWinMMAdapter
     
     class Input
       include CongruousApiAdapter::Device
       extend CongruousApiAdapter::Device::ClassMethods
-      DeviceClass = ::AlsaRawMIDI::Input
+      DeviceClass = ::MIDIWinMM::Input
     end
 
     class Output
       include CongruousApiAdapter::Device
       extend CongruousApiAdapter::Device::ClassMethods
-      DeviceClass = ::AlsaRawMIDI::Output
+      DeviceClass = ::MIDIWinMM::Output
     end
 
   end

@@ -13,8 +13,8 @@ module UniMIDI
           when /linux/ then 'alsa-rawmidi'
           when /win32/ then 'midi-winmm'
         end
-        require("unimidi/#{lib}")
         require(lib)
+        require("unimidi/#{lib}")
         @interface = case RUBY_PLATFORM
           when /linux/ then AlsaRawMIDIAdapter
           when /win32/ then MIDIWinMMAdapter
