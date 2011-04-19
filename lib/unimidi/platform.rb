@@ -14,7 +14,7 @@ module UniMIDI
           when /win32/ then 'midi-winmm'
         end
         require(lib)
-        require("unimidi/#{lib}")
+        require("unimidi/adapter/#{lib}")
         @interface = case RUBY_PLATFORM
           when /linux/ then AlsaRawMIDIAdapter
           when /win32/ then MIDIWinMMAdapter
