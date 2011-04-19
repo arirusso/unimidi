@@ -5,7 +5,7 @@ Copyright:: Copyright (c) 2011 Ari Russo
 
 == Summary
 
-Realtime MIDI input and output for Ruby
+Cross-Platform, realtime MIDI input and output for Ruby
 
 == Features
 
