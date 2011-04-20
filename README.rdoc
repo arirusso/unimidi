@@ -5,13 +5,14 @@ Copyright:: Copyright (c) 2011 Ari Russo
 
 == Summary
 
-Cross-Platform, realtime MIDI input and output for Ruby
+Platform independent realtime MIDI input and output for Ruby.
 
 == Features
 
-* Multiple platforms supported (currently Linux, Windows/Cygwin, more to follow)
+* Platform independent.  Currently Linux, Windows and Cygwin are supported. More platforms will follow (see "to-do")
 * Handle both input and output
-* Supports messaging to and from multiple devices concurrently
+* All types of MIDI messages are supported
+* Send and receive data to and from multiple devices concurrently
 
 == Requirements
 
@@ -34,6 +35,11 @@ Cross-Platform, realtime MIDI input and output for Ruby
 == Documentation
 
 * {rdoc}[http://rdoc.info/gems/unimidi]
+
+== To-do
+
+* OSX implementation
+* JRuby
 	
 == License
 
