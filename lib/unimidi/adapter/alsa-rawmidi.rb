@@ -2,6 +2,11 @@ module UniMIDI
 
   module AlsaRawMIDIAdapter
     
+    class Device
+      extend CongruousApiAdapter::Device::ClassMethods
+      DeviceClass = ::AlsaRawMIDI::Device
+    end
+    
     class Input
       include CongruousApiAdapter::Device
       extend CongruousApiAdapter::Device::ClassMethods
