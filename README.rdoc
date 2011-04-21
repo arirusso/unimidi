@@ -1,8 +1,5 @@
 = UniMIDI
 
-Author:: Ari Russo
-Copyright:: Copyright (c) 2011 Ari Russo
-
 == Summary
 
 Platform independent realtime MIDI input and output for Ruby.
@@ -38,9 +35,15 @@ Platform independent realtime MIDI input and output for Ruby.
 
 == To-do
 
-* OSX implementation
-* JRuby
+* JRuby implementation
+* OSX
 	
+== Author 
+
+{Ari Russo}[http://github.com/arirusso] <ari.russo at gmail.com>
+		
 == License
 
-Apache 2.0, See the file LICENSE  
+Apache 2.0, See the file LICENSE
+
+Copyright (c) 2010-2011 Ari Russo  
