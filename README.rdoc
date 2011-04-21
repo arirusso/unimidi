@@ -1,8 +1,5 @@
 = UniMIDI
 
-Author:: Ari Russo
-Copyright:: Copyright (c) 2011 Ari Russo
-
 == Summary
 
 Platform independent realtime MIDI input and output for Ruby.
@@ -10,9 +7,8 @@ Platform independent realtime MIDI input and output for Ruby.
 == Features
 
 * Platform independent.  Currently Linux, Windows and Cygwin are supported. More platforms will follow (see "to-do")
-* Handle both input and output
-* All types of MIDI messages are supported
-* Send and receive data to and from multiple devices concurrently
+* Both input and output to and from multiple devices concurrently
+* Agnostically handle different MIDI Message types (including SysEx)
 
 == Requirements
 
@@ -38,9 +34,15 @@ Platform independent realtime MIDI input and output for Ruby.
 
 == To-do
 
-* OSX implementation
-* JRuby
+* JRuby implementation
+* OSX
 	
+== Author 
+
+{Ari Russo}[http://github.com/arirusso] <ari.russo at gmail.com>
+		
 == License
 
-Apache 2.0, See the file LICENSE  
+Apache 2.0, See the file LICENSE
+
+Copyright (c) 2010-2011 Ari Russo  
