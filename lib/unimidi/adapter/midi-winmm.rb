@@ -4,19 +4,19 @@ module UniMIDI
     
     class Device
       extend CongruousApiAdapter::Device::ClassMethods
-      DeviceClass = ::MIDIWinMM::Device
+      defer_to MIDIWinMM::Device
     end
     
     class Input
       include CongruousApiAdapter::Device
-      extend CongruousApiAdapter::Device::ClassMethods
-      DeviceClass = ::MIDIWinMM::Input
+      include CongruousApiAdapter::Input
+      defer_to MIDIWinMM::Input
     end
 
     class Output
       include CongruousApiAdapter::Device
-      extend CongruousApiAdapter::Device::ClassMethods
-      DeviceClass = ::MIDIWinMM::Output
+      include CongruousApiAdapter::Output
+      defer_to MIDIWinMM::Output
     end
 
   end

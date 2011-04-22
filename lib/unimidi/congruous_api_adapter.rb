@@ -8,24 +8,81 @@ module UniMIDI
         @device = device_obj
       end
       
-      def method_missing(method, *args, &block)
-        @device.respond_to?(method) ? @device.send(method, *args, &block) : super
+      def open(*a, &block)
+        begin 
+          @device.open(*a)
+          block.call(self)
+        ensure
+          close
+        end
       end
       
+      def close(*a)
+        @device.close(*a)
+      end
+
       def self.included(base)
         base.send(:attr_reader, :device)
       end
 
       module ClassMethods
         
+        def first         
+          new(device_class.first)
+        end
+        
+        def last
+          new(device_class.last)
+        end
+        
+        def all
+          device_class.all.map { |d| new(d) }
+        end
+        
+        def all_by_type
+          
+        end
+        
+        def defer_to(klass)
+          const_set("DeferToClass", klass)
+        end
+
         def device_class
-          const_get("DeviceClass")
+          const_get("DeferToClass")
         end
 
-        def method_missing(method, *args, &block)
-          device_class.respond_to?(method) ? device_class.send(method, *args, &block) : super 
-        end
+      end
 
+    end
+
+    module Input
+   
+      def self.included(base)
+        base.extend(Device::ClassMethods)
+      end
+
+      def gets(*a)
+        @device.gets(*a)
+      end
+      
+      def gets_bytestr(*a)
+        @device.gets_bytestr(*a)
+      end
+
+    end
+
+    module Output
+      
+      def self.included(base)
+        base.extend(Device::ClassMethods)
+      end
+      
+      def puts(*a)
+        @device.puts(*a)
+      end
+      
+      def puts_bytestr(*a)
+        @device.puts_bytestr(*a)
       end
 
     end

@@ -4,19 +4,19 @@ module UniMIDI
     
     class Device
       extend CongruousApiAdapter::Device::ClassMethods
-      DeviceClass = ::AlsaRawMIDI::Device
+      defer_to AlsaRawMIDI::Device
     end
     
     class Input
       include CongruousApiAdapter::Device
-      extend CongruousApiAdapter::Device::ClassMethods
-      DeviceClass = ::AlsaRawMIDI::Input
+      include CongruousApiAdapter::Input
+      defer_to AlsaRawMIDI::Input
     end
 
     class Output
       include CongruousApiAdapter::Device
-      extend CongruousApiAdapter::Device::ClassMethods
-      DeviceClass = ::AlsaRawMIDI::Output
+      include CongruousApiAdapter::Output
+      defer_to AlsaRawMIDI::Output
     end
 
   end
