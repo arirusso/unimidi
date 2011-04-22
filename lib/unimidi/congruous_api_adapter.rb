@@ -40,7 +40,10 @@ module UniMIDI
         end
         
         def all_by_type
-          
+          { 
+            :input => device_class.all_by_type[:input].map { |d| new(d) },
+            :output => device_class.all_by_type[:output].map { |d| new(d) }
+          }
         end
         
         def defer_to(klass)
@@ -59,6 +62,7 @@ module UniMIDI
    
       def self.included(base)
         base.extend(Device::ClassMethods)
+        base.extend(ClassMethods)
       end
 
       def gets(*a)
@@ -68,6 +72,14 @@ module UniMIDI
       def gets_bytestr(*a)
         @device.gets_bytestr(*a)
       end
+      
+      module ClassMethods
+        
+        def self.all
+          device_class.all_by_type[:input].map { |d| new(d) }
+        end
+        
+      end
 
     end
 
@@ -75,6 +87,7 @@ module UniMIDI
       
       def self.included(base)
         base.extend(Device::ClassMethods)
+        base.extend(ClassMethods)
       end
       
       def puts(*a)
@@ -83,6 +96,14 @@ module UniMIDI
       
       def puts_bytestr(*a)
         @device.puts_bytestr(*a)
+      end
+      
+      module ClassMethods
+        
+        def self.all
+          device_class.all_by_type[:output].map { |d| new(d) }
+        end
+        
       end
 
     end
