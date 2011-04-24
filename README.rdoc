@@ -6,7 +6,7 @@ Platform independent realtime MIDI input and output for Ruby.
 
 == Features
 
-* Platform independent.  Currently Linux, JRuby, Windows and Cygwin are supported. More platforms will follow (see "to-do")
+* Currently Linux, JRuby, Windows and Cygwin are supported. More platforms will follow (see "to-do")
 * Both input and output to and from multiple devices concurrently
 * Agnostically handle different MIDI Message types (including SysEx)
 
