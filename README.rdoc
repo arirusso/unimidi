@@ -12,8 +12,13 @@ Platform independent realtime MIDI input and output for Ruby.
 
 == Requirements
 
+Platform
+
+* JRuby: {midi-jruby}[http://github.com/arirusso/midi-jruby]
 * Linux: {alsa-rawmidi}[http://github.com/arirusso/alsa-rawmidi]
-* Windows/Cygwin: {midi-winmm}[https://github.com/arirusso/midi-winmm] 
+* Windows/Cygwin: {midi-winmm}[http://github.com/arirusso/midi-winmm] 
+
+Note that if you are using JRuby you must be in 1.9 mode.  This is normally accomplished by passing --1.9 to JRuby at the command line.
 	
 == Install
 
@@ -34,8 +39,7 @@ Platform independent realtime MIDI input and output for Ruby.
 
 == To-do
 
-* JRuby implementation
-* OSX
+* OSX (coremidirb?) implementation
 	
 == Author 
 

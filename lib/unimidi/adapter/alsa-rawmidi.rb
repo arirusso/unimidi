@@ -1,3 +1,5 @@
+require 'alsa-rawmidi'
+
 module UniMIDI
 
   module AlsaRawMIDIAdapter

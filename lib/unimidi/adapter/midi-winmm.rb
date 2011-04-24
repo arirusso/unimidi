@@ -1,3 +1,5 @@
+require 'midi-winmm'
+
 module UniMIDI
 
   module MIDIWinMMAdapter

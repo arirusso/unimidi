@@ -10,16 +10,17 @@ module UniMIDI
       
       def initialize
         lib = case RUBY_PLATFORM
+          when /java/ then 'midi-jruby'
           when /linux/ then 'alsa-rawmidi'
-          when /win/ then 'midi-winmm'
           when /mingw/ then 'midi-winmm' #cygwin
+          when /win/ then 'midi-winmm'
         end
-        require(lib)
         require("unimidi/adapter/#{lib}")
         @interface = case RUBY_PLATFORM
+          when /java/ then MIDIJRuby
           when /linux/ then AlsaRawMIDIAdapter
-          when /win/ then MIDIWinMMAdapter 
           when /mingw/ then MIDIWinMMAdapter #cygwin
+          when /win/ then MIDIWinMMAdapter 
         end
       end
 
