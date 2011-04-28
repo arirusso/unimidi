@@ -39,7 +39,7 @@ Note that if you are using JRuby you must be in 1.9 mode.  This is normally acco
 
 == To-do
 
-* OSX (coremidirb?) implementation
+* OSX {coremidi}[http://github.com/arirusso/coremidi] implementation once that lib is done
 	
 == Author 
 
