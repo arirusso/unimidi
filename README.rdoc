@@ -18,7 +18,10 @@ Platform
 * Linux: {alsa-rawmidi}[http://github.com/arirusso/alsa-rawmidi]
 * Windows/Cygwin: {midi-winmm}[http://github.com/arirusso/midi-winmm] 
 
-Note that if you are using JRuby you must be in 1.9 mode.  This is normally accomplished by passing --1.9 to JRuby at the command line.
+A couple of notes about JRuby only:
+
+* You must be in 1.9 mode.  This is normally accomplished by passing --1.9 to JRuby at the command line.
+* javax.sound has some documented issues with SysEx messages in some versions OSX Snow Leopard which do affect this library. 
 	
 == Install
 
