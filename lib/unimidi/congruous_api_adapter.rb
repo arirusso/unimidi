@@ -6,6 +6,8 @@ module UniMIDI
       
       def initialize(device_obj)
         @device = device_obj
+        @id = @device.id
+        @name = @device.name
       end
       
       def open(*a, &block)
@@ -22,7 +24,9 @@ module UniMIDI
       end
 
       def self.included(base)
-        base.send(:attr_reader, :device)
+        #base.send(:attr_reader, :device)
+        base.send(:attr_reader, :name)
+        base.send(:attr_reader, :id)
       end
 
       module ClassMethods
@@ -36,20 +40,36 @@ module UniMIDI
         end
         
         def all
-          device_class.all.map { |d| new(d) }
+          all_by_type.values.flatten
         end
         
         def all_by_type
           { 
-            :input => device_class.all_by_type[:input].map { |d| new(d) },
-            :output => device_class.all_by_type[:output].map { |d| new(d) }
+            :input => device_class.all_by_type[:input].map { |d| get_input_class.new(d) },
+            :output => device_class.all_by_type[:output].map { |d| get_output_class.new(d) }
           }
         end
         
         def defer_to(klass)
           const_set("DeferToClass", klass)
         end
+        
+        def get_input_class
+          const_get("InputClass")
+        end
+        
+        def get_output_class
+          const_get("OutputClass")
+        end
 
+        def input_class(klass)
+          const_set("InputClass", klass)
+        end
+        
+        def output_class(klass)
+          const_set("OutputClass", klass)
+        end
+        
         def device_class
           const_get("DeferToClass")
         end
@@ -109,9 +129,9 @@ module UniMIDI
       end
       
       module ClassMethods
-        
-        def self.all
-          device_class.all_by_type[:input].map { |d| new(d) }
+             
+        def all
+          device_class.all.map { |d| new(d) }
         end
         
       end
@@ -135,8 +155,8 @@ module UniMIDI
       
       module ClassMethods
         
-        def self.all
-          device_class.all_by_type[:output].map { |d| new(d) }
+        def all
+          device_class.all.map { |d| new(d) }
         end
         
       end
