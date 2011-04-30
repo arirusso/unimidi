@@ -1,10 +1,12 @@
 #!/usr/bin/env ruby
 #
 # A realtime MIDI interface for Ruby
+# (c)2010-2011 Ari Russo and licensed under the Apache 2.0 License
 #
+
 module UniMIDI
   
-  VERSION = "0.0.8"
+  VERSION = "0.1.0"
  
 end
 
