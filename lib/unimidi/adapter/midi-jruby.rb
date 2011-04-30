@@ -2,12 +2,7 @@ require 'midi-jruby'
 
 module UniMIDI
 
-  module AlsaRawMIDIAdapter
-    
-    class Device
-      extend CongruousApiAdapter::Device::ClassMethods
-      defer_to MIDIJRuby::Device
-    end
+  module MIDIJRubyAdapter
     
     class Input
       include CongruousApiAdapter::Device
@@ -19,6 +14,13 @@ module UniMIDI
       include CongruousApiAdapter::Device
       include CongruousApiAdapter::Output
       defer_to MIDIJRuby::Output
+    end
+    
+    class Device
+      extend CongruousApiAdapter::Device::ClassMethods
+      defer_to MIDIJRuby::Device
+      input_class Input
+      output_class Output
     end
 
   end
