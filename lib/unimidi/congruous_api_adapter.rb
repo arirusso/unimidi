@@ -10,6 +10,7 @@ module UniMIDI
         @name = @device.name
       end
       
+      # enable the device for use, can be passed a block to which the device will be passed back
       def open(*a, &block)
         begin
           @device.open(*a)
@@ -19,6 +20,7 @@ module UniMIDI
         end
       end
       
+      # close the device
       def close(*a)
         @device.close(*a)
       end
@@ -145,12 +147,26 @@ module UniMIDI
         base.extend(ClassMethods)
       end
       
+      # sends a message to the output. the message can be:
+      #
+      # bytes eg output.puts(0x90, 0x40, 0x40) 
+      # an array of bytes eg output.puts([0x90, 0x40, 0x40])
+      # or a string eg output.puts("904040")
+      #
       def puts(*a)
         @device.puts(*a)
       end
       
+      # sends a message to the output in a form of a string eg "904040".  this method does not do
+      # type checking and therefore is more performant than puts
       def puts_bytestr(*a)
         @device.puts_bytestr(*a)
+      end
+
+      # sends a message to the output in a form of bytes eg output.puts_bytes(0x90, 0x40, 0x40).  
+      # this method does not do type checking and therefore is more performant than puts      
+      def puts_bytes(*a)
+        @device.puts_bytes(*a)
       end
       
       module ClassMethods
