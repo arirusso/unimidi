@@ -11,7 +11,7 @@ module UniMIDI
       end
       
       def open(*a, &block)
-        begin 
+        begin
           @device.open(*a)
           block.call(self)
         ensure

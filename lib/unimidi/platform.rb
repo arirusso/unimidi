@@ -17,7 +17,7 @@ module UniMIDI
         end
         require("unimidi/adapter/#{lib}")
         @interface = case RUBY_PLATFORM
-          when /java/ then MIDIJRuby
+          when /java/ then MIDIJRubyAdapter
           when /linux/ then AlsaRawMIDIAdapter
           when /mingw/ then MIDIWinMMAdapter #cygwin
           when /win/ then MIDIWinMMAdapter 
