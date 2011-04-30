@@ -132,6 +132,7 @@ module UniMIDI
       
       module ClassMethods
              
+        # returns all inputs
         def all
           device_class.all.map { |d| new(d) }
         end
@@ -171,6 +172,7 @@ module UniMIDI
       
       module ClassMethods
         
+        # returns all outputs
         def all
           device_class.all.map { |d| new(d) }
         end
