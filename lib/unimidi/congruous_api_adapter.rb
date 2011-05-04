@@ -19,7 +19,7 @@ module UniMIDI
       def open(*a, &block)
         begin
           @device.open(*a)
-          block.nil? ? block.call(self) : self
+          block.nil? ? self : block.call(self)
         ensure
           close
         end
