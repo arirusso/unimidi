@@ -17,11 +17,15 @@ module UniMIDI
       
       # enable the device for use, can be passed a block to which the device will be passed back
       def open(*a, &block)
-        begin
-          @device.open(*a)
-          block.nil? ? self : block.call(self)
-        ensure
-          close
+        @device.open(*a)
+        unless block.nil?
+          begin
+            block.call(self)
+          ensure
+            close
+          end
+        else
+          self
         end
       end
       

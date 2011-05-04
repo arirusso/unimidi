@@ -6,6 +6,6 @@ module TestHelper::Config
   # before running tests
 
   TestInput = UniMIDI::Input.first # this is the device you wish to use to test input
-  TestOutput = UniMIDI::Output.all[1] # likewise for output
+  TestOutput = UniMIDI::Output.first # likewise for output
 
 end
