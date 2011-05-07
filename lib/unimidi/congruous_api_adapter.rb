@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 #
-# (c)2010-2011 Ari Russo and licensed under the Apache 2.0 License
-#
 
 module UniMIDI
 
@@ -42,7 +40,7 @@ module UniMIDI
 
       module ClassMethods
         
-        def first         
+        def first
           new(device_class.first)
         end
         
@@ -60,29 +58,17 @@ module UniMIDI
             :output => device_class.all_by_type[:output].map { |d| get_output_class.new(d) }
           }
         end
-        
-        def defer_to(klass)
-          const_set("DeferToClass", klass)
-        end
-        
+
         def get_input_class
-          const_get("InputClass")
-        end
-        
-        def get_output_class
-          const_get("OutputClass")
+          self::InputClass
         end
 
-        def input_class(klass)
-          const_set("InputClass", klass)
+        def get_output_class
+          self::OutputClass
         end
-        
-        def output_class(klass)
-          const_set("OutputClass", klass)
-        end
-        
+
         def device_class
-          const_get("DeferToClass")
+          self::DeferToClass
         end
 
       end

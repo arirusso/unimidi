@@ -1,27 +1,27 @@
 #!/usr/bin/env ruby
 #
 
-require 'alsa-rawmidi'
+require 'coremidi'
 
 module UniMIDI
 
-  module AlsaRawMIDIAdapter
+  module CoreMIDIAdapter
     
     class Input
       include CongruousApiAdapter::Device
       include CongruousApiAdapter::Input
-      DeferToClass = AlsaRawMIDI::Input
+      DeferToClass = CoreMIDI::Input
     end
 
     class Output
       include CongruousApiAdapter::Device
       include CongruousApiAdapter::Output
-      DeferToClass = AlsaRawMIDI::Output
+      DeferToClass = CoreMIDI::Output
     end
     
     class Device
       extend CongruousApiAdapter::Device::ClassMethods
-      DeferToClass = AlsaRawMIDI::Device
+      DeferToClass = CoreMIDI::Device
       InputClass = Input
       OutputClass = Output
     end
