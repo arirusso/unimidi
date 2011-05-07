@@ -6,7 +6,7 @@ Platform independent realtime MIDI input and output for Ruby.
 
 == Features
 
-* Currently Linux, JRuby, Windows and Cygwin are supported. OSX is {in progress}[http://github.com/arirusso/ffi-coremidi]
+* Supports Linux, JRuby, OSX, Windows and Cygwin
 * Both input and output to and from multiple devices concurrently
 * Agnostically handle different MIDI and SysEx Message types
 
@@ -16,7 +16,8 @@ Platform
 
 * JRuby: {midi-jruby}[http://github.com/arirusso/midi-jruby]
 * Linux: {alsa-rawmidi}[http://github.com/arirusso/alsa-rawmidi]
-* Windows/Cygwin: {midi-winmm}[http://github.com/arirusso/midi-winmm] 
+* OSX: {ffi-coremidi}[http://github.com/arirusso/ffi-coremidi]
+* Windows/Cygwin: {midi-winmm}[http://github.com/arirusso/midi-winmm]
 
 A couple of notes about JRuby only:
 
