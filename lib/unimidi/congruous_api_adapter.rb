@@ -108,6 +108,8 @@ module UniMIDI
       def gets_bytestr(*a)
         @device.gets_bytestr(*a)
       end
+      alias_method :gets_s, :gets_bytestr
+      alias_method :gets_hex, :gets_bytestr
 
       #
       # returns an array of data bytes such as 
