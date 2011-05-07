@@ -1,4 +1,6 @@
 doc
+.idea
+.idea/*/**
 .loadpath
 .project
 unimidi.gemspec
