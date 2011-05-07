@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require File.dirname(__FILE__) + '/test_helper'
+require 'helper'
 
 class IoTest < Test::Unit::TestCase
 
