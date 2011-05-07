@@ -128,6 +128,8 @@ module UniMIDI
         arr = gets_bytestr
         arr.map { |msg| msg[:data] }.join
       end
+      alias_method :gets_data_s, :gets_data_bytestr
+      alias_method :gets_data_hex, :gets_data_bytestr
       
       module ClassMethods
              
