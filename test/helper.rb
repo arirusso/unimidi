@@ -37,3 +37,7 @@ module TestHelper
 end
 
 require File.dirname(__FILE__) + '/config'
+include TestHelper::Config
+
+puts "connect #{TestInput.name} (#{TestInput.id}) to #{TestOutput.name} (#{TestOutput.id}) and press enter"
+$stdin.gets.chomp
