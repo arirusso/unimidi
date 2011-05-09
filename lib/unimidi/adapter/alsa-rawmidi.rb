@@ -10,20 +10,20 @@ module UniMIDI
     class Input
       include CongruousApiAdapter::Device
       include CongruousApiAdapter::Input
-      DeferToClass = AlsaRawMIDI::Input
+      defer_to AlsaRawMIDI::Input
     end
 
     class Output
       include CongruousApiAdapter::Device
       include CongruousApiAdapter::Output
-      DeferToClass = AlsaRawMIDI::Output
+      defer_to AlsaRawMIDI::Output
     end
     
     class Device
       extend CongruousApiAdapter::Device::ClassMethods
-      DeferToClass = AlsaRawMIDI::Device
-      InputClass = Input
-      OutputClass = Output
+      defer_to AlsaRawMIDI::Device
+      input_class Input
+      output_class Output
     end
     
   end

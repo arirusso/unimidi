@@ -40,37 +40,43 @@ module UniMIDI
 
       module ClassMethods
         
-        def first
-          new(device_class.first)
+        # returns the first device for this class
+        def first(*a)
+          new(@@deference[self].first(*a))
         end
         
-        def last
-          new(device_class.last)
+        # returns the last device for this class
+        def last(*a)
+          new(@@deference[self].last(*a))
         end
         
+        # returns all devices in an array
         def all
           all_by_type.values.flatten
         end
         
+        # returns all devices as a hash as such
+        #   { :input => [input devices], :output => [output devices] }
         def all_by_type
           { 
-            :input => device_class.all_by_type[:input].map { |d| get_input_class.new(d) },
-            :output => device_class.all_by_type[:output].map { |d| get_output_class.new(d) }
+            :input => @@deference[self].all_by_type[:input].map { |d| @@input_class.new(d) },
+            :output => @@deference[self].all_by_type[:output].map { |d| @@output_class.new(d) }
           }
         end
-
-        def get_input_class
-          self::InputClass
+        
+        def defer_to(klass)
+          @@deference ||= {}
+          @@deference[self] = klass
+        end
+        
+        def input_class(klass)
+          @@input_class = klass
         end
 
-        def get_output_class
-          self::OutputClass
+        def output_class(klass)
+          @@output_class = klass
         end
-
-        def device_class
-          self::DeferToClass
-        end
-
+        
       end
 
     end
@@ -105,11 +111,11 @@ module UniMIDI
       #     { :data => "90447F", :timestamp => 1300 }
       #   ]
       #
-      def gets_bytestr(*a)
+      def gets_s(*a)
         @device.gets_bytestr(*a)
       end
-      alias_method :gets_s, :gets_bytestr
-      alias_method :gets_hex, :gets_bytestr
+      alias_method :gets_bytestr, :gets_s
+      alias_method :gets_hex, :gets_s
 
       #
       # returns an array of data bytes such as 
@@ -124,18 +130,18 @@ module UniMIDI
       # returns a string of data such as 
       #   "90406080406090447F"
       #             
-      def gets_data_bytestr(*a)
+      def gets_data_s(*a)
         arr = gets_bytestr
         arr.map { |msg| msg[:data] }.join
       end
-      alias_method :gets_data_s, :gets_data_bytestr
-      alias_method :gets_data_hex, :gets_data_bytestr
+      alias_method :gets_data_bytestr, :gets_data_s
+      alias_method :gets_data_hex, :gets_data_s
       
       module ClassMethods
              
         # returns all inputs
         def all
-          device_class.all.map { |d| new(d) }
+          @@deference[self].all.map { |d| new(d) }
         end
         
       end
@@ -161,9 +167,11 @@ module UniMIDI
       
       # sends a message to the output in a form of a string eg "904040".  this method does not do
       # type checking and therefore is more performant than puts
-      def puts_bytestr(*a)
+      def puts_s(*a)
         @device.puts_bytestr(*a)
       end
+      alias_method :puts_bytestr, :puts_s
+      alias_method :puts_hex, :puts_s
 
       # sends a message to the output in a form of bytes eg output.puts_bytes(0x90, 0x40, 0x40).  
       # this method does not do type checking and therefore is more performant than puts      
@@ -175,7 +183,7 @@ module UniMIDI
         
         # returns all outputs
         def all
-          device_class.all.map { |d| new(d) }
+          @@deference[self].all.map { |d| new(d) }
         end
         
       end
