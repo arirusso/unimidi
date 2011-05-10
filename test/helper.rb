@@ -7,6 +7,18 @@ require 'test/unit'
 require 'unimidi'
 
 module TestHelper
+  
+  def platform_test(adapter, mod)
+    assert_equal(adapter, UniMIDI::Platform.instance.interface)
+    assert_not_same(mod::Input, UniMIDI::Input)
+    assert_not_same(mod::Output, UniMIDI::Output)
+    assert_not_same(mod::Device, UniMIDI::Device)
+    assert_equal(mod::Input.first.name, UniMIDI::Input.first.name)
+    assert_equal(mod::Input.first.id, UniMIDI::Input.first.id)
+    assert_not_same(mod::Output.first, UniMIDI::Output.first)
+    assert_equal(mod::Output.first.name, UniMIDI::Output.first.name)
+    assert_equal(mod::Output.first.id, UniMIDI::Output.first.id)
+  end
 	    
   def bytestrs_to_ints(arr)
     data = arr.map { |m| m[:data] }.join
