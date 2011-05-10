@@ -27,7 +27,7 @@ class PlatformTest < Test::Unit::TestCase
   end
   
   def test_windows
-    if RUBY_PLATFORM.include?("win") || RUBY_PLATFORM.include?("mingw")
+    if RUBY_PLATFORM.include?("mingw")
       platform_test(MIDIWinMMAdapter, MIDIWinMM)
     end
   end  
