@@ -7,20 +7,15 @@ module UniMIDI
 
   module CoreMIDIAdapter
     
-    class Input
-      include CongruousApiAdapter::Device
-      include CongruousApiAdapter::Input
+    class Input < CongruousApiInput
       defer_to CoreMIDI::Input
     end
 
-    class Output
-      include CongruousApiAdapter::Device
-      include CongruousApiAdapter::Output
+    class Output < CongruousApiOutput
       defer_to CoreMIDI::Output
     end
     
-    class Device
-      extend CongruousApiAdapter::Device::ClassMethods
+    class Device < CongruousApiDevice
       defer_to CoreMIDI::Device
       input_class Input
       output_class Output

@@ -7,20 +7,15 @@ module UniMIDI
 
   module MIDIJRubyAdapter
     
-    class Input
-      include CongruousApiAdapter::Device
-      include CongruousApiAdapter::Input
+    class Input < CongruousApiInput
       defer_to MIDIJRuby::Input
     end
 
-    class Output
-      include CongruousApiAdapter::Device
-      include CongruousApiAdapter::Output
+    class Output < CongruousApiOutput
       defer_to MIDIJRuby::Output
     end
     
-    class Device
-      extend CongruousApiAdapter::Device::ClassMethods
+    class Device < CongruousApiDevice
       defer_to MIDIJRuby::Device
       input_class Input
       output_class Output
