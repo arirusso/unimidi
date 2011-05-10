@@ -112,7 +112,7 @@ module UniMIDI
       #   ]
       #
       def gets_s(*a)
-        @device.gets_bytestr(*a)
+        @device.gets_s(*a)
       end
       alias_method :gets_bytestr, :gets_s
       alias_method :gets_hex, :gets_s
@@ -168,7 +168,7 @@ module UniMIDI
       # sends a message to the output in a form of a string eg "904040".  this method does not do
       # type checking and therefore is more performant than puts
       def puts_s(*a)
-        @device.puts_bytestr(*a)
+        @device.puts_s(*a)
       end
       alias_method :puts_bytestr, :puts_s
       alias_method :puts_hex, :puts_s
