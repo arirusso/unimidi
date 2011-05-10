@@ -37,6 +37,10 @@ A couple of notes about JRuby only:
 
 * please see {test/config.rb}[http://github.com/arirusso/unimidi/blob/master/test/config.rb] before running tests
 
+For testing with JRuby, use 
+
+  jruby --1.9 -S rake test
+
 == Documentation
 
 * {rdoc}[http://rdoc.info/gems/unimidi]
