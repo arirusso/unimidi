@@ -8,7 +8,7 @@ require 'unimidi'
 
 module TestHelper
   
-  TestSysex = true unless RUBY_PLATFORM.include?("java")
+  TestSysex = !RUBY_PLATFORM.include?("java") 
   
   def platform_test(adapter, mod)
     assert_equal(adapter, UniMIDI::Platform.instance.interface)
