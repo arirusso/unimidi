@@ -12,6 +12,7 @@ end
 
 require 'unimidi/congruous_api_adapter'
 require 'unimidi/platform'
+require 'unimidi/type_conversion'
 
 module UniMIDI
   extend(Platform.instance.interface)

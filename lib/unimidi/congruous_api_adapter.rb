@@ -135,6 +135,26 @@ module UniMIDI
     end
     alias_method :gets_data_bytestr, :gets_data_s
     alias_method :gets_data_hex, :gets_data_s
+    
+    # clears the buffer
+    def clear_buffer
+      @device.buffer.clear
+    end
+    
+    # gets any messages in the buffer in the same format as CongruousApiInput#gets 
+    def gets_buffer(*a)
+      @device.buffer
+    end
+    
+    # gets any messages in the buffer in the same format as CongruousApiInput#gets_s
+    def gets_buffer_s(*a)
+      @device.buffer.map { |msg| msg[:data] = TypeConversion.numeric_byte_array_to_hex_string(msg[:data]); msg }
+    end
+    
+    # gets any messages in the buffer in the same format as CongruousApiInput#gets_data
+    def gets_buffer_data(*a)
+      @device.buffer.map { |msg| msg[:data] }
+    end
 
     # returns all inputs
     def self.all
