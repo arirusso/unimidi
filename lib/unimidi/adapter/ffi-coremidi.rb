@@ -16,7 +16,7 @@ module UniMIDI
     end
     
     class Device < CongruousApiDevice
-      defer_to CoreMIDI::Device
+      defer_to CoreMIDI::Entity
       input_class Input
       output_class Output
     end
