@@ -86,6 +86,9 @@ module UniMIDI
     
     include CongruousApiAdapter::Device
     extend CongruousApiAdapter::Device::ClassMethods
+    extend Forwardable
+    
+    def_delegators :@device, :buffer
     
     #
     # returns an array of MIDI event hashes as such:

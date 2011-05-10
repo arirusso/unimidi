@@ -6,9 +6,11 @@
 
 module UniMIDI
   
-  VERSION = "0.2.0"
+  VERSION = "0.1.6"
  
 end
+
+require 'forwardable'
 
 require 'unimidi/congruous_api_adapter'
 require 'unimidi/platform'
