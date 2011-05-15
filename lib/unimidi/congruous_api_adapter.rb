@@ -7,7 +7,7 @@ module UniMIDI
 
     module Device
       
-      def initialize(device_obj)
+      def initialize(device_obj)        
         @device = device_obj
         @id = @device.id
         @name = @device.name
@@ -41,12 +41,16 @@ module UniMIDI
         
         # returns the first device for this class
         def first(*a)
-          new(@deference[self].first(*a))
+          dev = @deference[self].first(*a)
+          raise 'Device not found' if dev.nil?
+          new(dev)
         end
 
         # returns the last device for this class
         def last(*a)
-          new(@deference[self].last(*a))
+          dev = @deference[self].last(*a)
+          raise 'Device not found' if dev.nil?
+          new(dev)          
         end
 
         # returns all devices in an array
