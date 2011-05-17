@@ -18,7 +18,7 @@ module UniMIDI
         @device.open(*a)
         unless block.nil?
           begin
-            block.call(self)
+            yield(self)
           ensure
             close
           end
