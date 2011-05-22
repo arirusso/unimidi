@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+$LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
+
+require 'unimidi'
+
+opts = ARGV.length > 1 ? ARGV.slice(1, ARGV.length-1) : {} 
+  
+command = ARGV.first.to_sym or raise "no command specified"
+ 
+UniMIDI.command(command, opts)
