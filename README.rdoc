@@ -23,7 +23,7 @@ Platform
 
   gem install unimidi
   
-No compilation required, just install the gem and set up your hardware
+No compilation required
 	
 == Examples
 
