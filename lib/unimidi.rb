@@ -6,7 +6,7 @@
 
 module UniMIDI
   
-  VERSION = "0.1.6"
+  VERSION = "0.1.7"
  
 end
 
@@ -19,4 +19,13 @@ require 'unimidi/type_conversion'
 module UniMIDI
   extend(Platform.instance.interface)
   include(Platform.instance.interface)
+  
+  def self.command(command, options = {})
+    if [:l, :list, :list_devices].include?(command)
+      require 'pp'
+      pp Device::all
+    else
+      $stderr.puts "Command #{command.to_s} not found"
+    end      
+  end
 end
