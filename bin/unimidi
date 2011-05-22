@@ -5,6 +5,6 @@ require 'unimidi'
 
 opts = ARGV.length > 1 ? ARGV.slice(1, ARGV.length-1) : {} 
   
-command = ARGV.first.to_sym rescue raise "no command specified"
+raise :noCommandSpecified if ARGV.first.nil? 
  
-UniMIDI.command(command, opts)
+UniMIDI.command(ARGV.first.to_sym, opts)
