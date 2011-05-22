@@ -8,8 +8,7 @@ class InputBufferTest < Test::Unit::TestCase
   include TestHelper
   include TestHelper::Config # before running these tests, adjust the constants in config.rb to suit your hardware setup
   
-  def test_input_buffer
-  
+ def test_input_buffer
     sleep(1)
 
     messages = VariousMIDIMessages
@@ -36,11 +35,10 @@ class InputBufferTest < Test::Unit::TestCase
 
         end
         
-        assert_equal(input.buffer.length, messages.length)
+        assert_equal(bytes.length, input.buffer.map { |m| m[:data] }.flatten.length)
 
       end
     end
-    
   end
 
 end

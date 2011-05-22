@@ -10,9 +10,11 @@ class IoTest < Test::Unit::TestCase
 
   # ** this test assumes that TestOutput is connected to TestInput
   def test_full_io
-
+    sleep(1)
     messages = VariousMIDIMessages
-
+    messages_arr = messages.inject { |a,b| a+b }.flatten
+    received_arr = []
+    pointer = 0
     TestOutput.open do |output|
       TestInput.open do |input|
 
@@ -21,16 +23,21 @@ class IoTest < Test::Unit::TestCase
           $>.puts "sending: " + msg.inspect
 
           output.puts(msg)
-
-          received = input.gets.first[:data]
+          sleep(1)
+          received = input.gets.map { |m| m[:data] }.flatten
+          
 
           $>.puts "received: " + received.inspect
 
-          assert_equal(msg, received)
+          assert_equal(messages_arr.slice(pointer, received.length), received)
+          
+          pointer += received.length
+          
+          received_arr += received
           
         end
         
-        assert_equal(input.buffer.length, messages.length)
+        assert_equal(messages_arr.length, received_arr.length)
 
       end
     end
@@ -41,6 +48,9 @@ class IoTest < Test::Unit::TestCase
     sleep(1) # pause between tests
 
     messages = VariousMIDIByteStrMessages
+    messages_str = messages.join
+    received_str = ""
+    pointer = 0
 
     TestOutput.open do |output|
       TestInput.open do |input|
@@ -50,74 +60,21 @@ class IoTest < Test::Unit::TestCase
           $>.puts "sending: " + msg.inspect
 
           output.puts(msg)
-
-          received = input.gets_bytestr.first[:data]
+          sleep(1)
+          received = input.gets_bytestr.map { |m| m[:data] }.flatten.join
           $>.puts "received: " + received.inspect
 
-          assert_equal(msg, received)
+          assert_equal(messages_str.slice(pointer, received.length), received)
+          
+          pointer += received.length
+          
+          received_str += received
           
         end
+   
+        assert_equal(messages_str, received_str)
         
-        assert_equal(input.buffer.length, messages.length)
       end
-    end
-
-  end
-
-  # ** this test assumes that TestOutput is connected to TestInput
-  def test_full_io_no_timestamps
-
-    messages = VariousMIDIMessages
-
-    TestOutput.open do |output|
-      TestInput.open do |input|
-
-        messages.each do |msg|
-
-          $>.puts "sending: " + msg.inspect
-
-          output.puts(msg)
-
-          received = input.gets_data
-
-          $>.puts "received: " + received.inspect
-
-          assert_equal(msg, received)
-          
-        end
-        
-        assert_equal(input.buffer.length, messages.length)
-
-      end      
-      
-    end
-  end
-
-  # ** this test assumes that TestOutput is connected to TestInput
-  def test_full_io_bytestr_no_timestamps
-    sleep(1) # pause between tests
-
-    messages = VariousMIDIByteStrMessages
-
-    TestOutput.open do |output|
-      TestInput.open do |input|
-
-        messages.each do |msg|
-
-          $>.puts "sending: " + msg.inspect
-
-          output.puts(msg)
-
-          received = input.gets_data_bytestr
-          $>.puts "received: " + received.inspect
-
-          assert_equal(msg, received)
-          
-        end
-        
-        assert_equal(input.buffer.length, messages.length)
-      end
-      
     end
 
   end
