@@ -22,11 +22,15 @@ Platform
 == Install
 
   gem install unimidi
+  
+No compilation required, just install the gem and set up your hardware
 	
 == Examples
 
 * {input}[http://github.com/arirusso/unimidi/blob/master/examples/input.rb]
 * {output}[http://github.com/arirusso/unimidi/blob/master/examples/output.rb]
+
+{more}[http://github.com/arirusso/unimidi/blob/master/examples]
 
 == Tests
 
