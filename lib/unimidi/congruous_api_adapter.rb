@@ -36,6 +36,7 @@ module UniMIDI
       def self.included(base)
         base.send(:attr_reader, :name)
         base.send(:attr_reader, :id)
+        base.send(:attr_reader, :type)
       end
 
       module ClassMethods
