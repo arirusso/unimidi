@@ -25,7 +25,7 @@ module UniMIDI
       require 'pp'
       pp Device::all
     else
-      $stderr.puts "Command #{command.to_s} not found"
+      raise "Command #{command.to_s} not found"
     end      
   end
 end
