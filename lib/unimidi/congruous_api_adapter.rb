@@ -11,6 +11,7 @@ module UniMIDI
         @device = device_obj
         @id = @device.id
         @name = @device.name
+        @type = @device.type
       end
 
       # enable the device for use, can be passed a block to which the device will be passed back
