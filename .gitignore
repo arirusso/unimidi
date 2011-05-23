@@ -4,3 +4,4 @@ doc
 .loadpath
 .project
 unimidi.gemspec
+unimidi-generic.gemspec
