@@ -14,7 +14,7 @@ Platform independent realtime MIDI input and output for Ruby.
 
 Ruby 1.9.2 or JRuby 1.6.1 are strongly recommended
 
-One of the following libraries is required based on what platform you're using.  They should all install automatically when you install the unimidi gem.  You can freely remove the ones that do not apply to your platform
+One of the following libraries is required based on what platform you're using.  It should install automatically with the unimidi gem.
 
 Platform
 
@@ -22,6 +22,8 @@ Platform
 * Linux: {alsa-rawmidi}[http://github.com/arirusso/alsa-rawmidi]
 * OSX: {ffi-coremidi}[http://github.com/arirusso/ffi-coremidi]
 * Windows/Cygwin: {midi-winmm}[http://github.com/arirusso/midi-winmm]
+
+Note that if you are using a more unusual configuration (such as 32-bit Snow Leopard) you may find that they all install automatically.
 	
 == Install
 
@@ -44,13 +46,17 @@ No compilation required
 
 * {rdoc}[http://rdoc.info/gems/unimidi]
 
-== If you are using JRuby
+== Platform Specific Notes
 
-A couple of notes
+=== JRuby
 
 * You must be in 1.9 mode.  This is normally accomplished by passing --1.9 to JRuby at the command line.  For testing in 1.9 mode, use 
     jruby --1.9 -S rake test
 * javax.sound has some documented issues with SysEx messages in some versions OSX Snow Leopard which do affect this library.
+
+=== Linux
+
+* libasound and libasound-dev packages are required
 	
 == Author 
 
