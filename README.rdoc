@@ -14,7 +14,7 @@ Platform independent realtime MIDI input and output for Ruby.
 
 Ruby 1.9.2 or JRuby 1.6.1 are strongly recommended
 
-One of the following libraries is required based on what platform is being used.  It should install automatically when you install the unimidi gem
+One of the following libraries is required based on what platform you're using.  They should all install automatically when you install the unimidi gem.  You can freely remove the ones that do not apply to your platform
 
 Platform
 
