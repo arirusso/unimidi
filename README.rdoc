@@ -7,8 +7,10 @@ Platform independent realtime MIDI input and output for Ruby.
 == Features
 
 * Supports Linux, JRuby, OSX, Windows and Cygwin
+* No compilation required
 * Both input and output to and from multiple devices concurrently
 * Agnostically handle different MIDI and SysEx Message types
+* Supports IAC Driver/ internal MIDI patching on OSX
 
 == Requirements
 
@@ -26,8 +28,6 @@ Platform
 == Install
 
   gem install unimidi
-  
-No compilation required
 	
 == Examples
 
