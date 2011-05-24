@@ -38,7 +38,15 @@ Platform
 
 == Tests
 
-* please see {test/config.rb}[http://github.com/arirusso/unimidi/blob/master/test/config.rb] before running tests
+Testing is tricky when working with unknown hardware configurations, and any ideas on how to better do so are most welcome
+
+There are a set of generic tests which assume that an output is connected to an input.  If you wish to run these tests, first edit {test/config.rb}[http://github.com/arirusso/unimidi/blob/master/test/config.rb] to configure it to your setup. 
+
+The tests can be run using
+
+  rake test
+
+See below for additional notes on testing with JRuby
 
 == Documentation
 
