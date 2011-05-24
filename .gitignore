@@ -3,5 +3,5 @@ doc
 .idea/*/**
 .loadpath
 .project
-unimidi.gemspec
-unimidi-generic.gemspec
+*.gemspec
+unimidi-gemspec.rb
