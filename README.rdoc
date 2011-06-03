@@ -10,7 +10,7 @@ Platform independent realtime MIDI input and output for Ruby.
 * No compilation required
 * Both input and output to and from multiple devices concurrently
 * Agnostically handle different MIDI and SysEx Message types
-* Supports IAC Driver/ internal MIDI patching on OSX
+* (OSX Only) Internally patch to other programs using IAC and {MIDI Patch Bay}[http://www.apple.com/downloads/macosx/audio/midipatchbay.html]
 
 == Requirements
 
