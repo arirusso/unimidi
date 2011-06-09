@@ -29,12 +29,18 @@ Platform
 
   gem install unimidi
 	
-== Examples
+== Usage
+
+Here is a {blog post}[http://tx81z.blogspot.com/2011/06/unimidi-platform-independent-realtime.html] with a quick tutorial to get started.
+
+In addition, some examples are included with the library
 
 * {input}[http://github.com/arirusso/unimidi/blob/master/examples/input.rb]
 * {output}[http://github.com/arirusso/unimidi/blob/master/examples/output.rb]
 
-{more}[http://github.com/arirusso/unimidi/blob/master/examples]
+{more examples}[http://github.com/arirusso/unimidi/blob/master/examples]
+
+Here is another {blog post}[http://tx81z.blogspot.com/2011/06/osx-unimidi-and-midi-patch-bay.html] about using unimidi with MIDI Patch Bay on OSX
 
 == Tests
 
