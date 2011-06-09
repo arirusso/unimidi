@@ -31,7 +31,7 @@ Platform
 	
 == Usage
 
-Here is a {blog post}[http://tx81z.blogspot.com/2011/06/unimidi-platform-independent-realtime.html] with a quick tutorial to get started.
+Here's a {blog post}[http://tx81z.blogspot.com/2011/06/unimidi-platform-independent-realtime.html] with a quick tutorial to get started.
 
 In addition, some examples are included with the library
 
@@ -40,7 +40,7 @@ In addition, some examples are included with the library
 
 {more examples}[http://github.com/arirusso/unimidi/blob/master/examples]
 
-Here is another {blog post}[http://tx81z.blogspot.com/2011/06/osx-unimidi-and-midi-patch-bay.html] about using unimidi with MIDI Patch Bay on OSX
+Here's another {blog post}[http://tx81z.blogspot.com/2011/06/osx-unimidi-and-midi-patch-bay.html] about using unimidi with MIDI Patch Bay on OSX
 
 == Tests
 
