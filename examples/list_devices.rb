@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
-
-dir = File.dirname(File.expand_path(__FILE__))
-$LOAD_PATH.unshift dir + '/../lib'
+$:.unshift File.join( File.dirname( __FILE__ ), '../lib')
 
 require 'unimidi'
 require 'pp'

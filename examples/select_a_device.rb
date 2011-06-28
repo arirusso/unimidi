@@ -4,7 +4,7 @@ $:.unshift File.join( File.dirname( __FILE__ ), '../lib')
 require 'unimidi'
 require 'pp'
 
-# Here's an example that explains how to select an output.
+# This is an example that explains how to select an output.
 #
 # first, take a look at the MIDI outputs that are available on your computer
 
