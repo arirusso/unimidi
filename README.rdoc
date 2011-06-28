@@ -33,8 +33,11 @@ Platform
 
 Here's a {blog post}[http://tx81z.blogspot.com/2011/06/unimidi-platform-independent-realtime.html] with a quick tutorial to get started.
 
+Here's another {blog post}[http://tx81z.blogspot.com/2011/06/high-level-midi-io-with-ruby.html] that {explains how to do high-level messaging}[http://tx81z.blogspot.com/2011/06/high-level-midi-io-with-ruby.html]
+
 In addition, some examples are included with the library
 
+* {selecting a device}[http://github.com/arirusso/unimidi/blob/master/examples/select_a_device.rb]
 * {input}[http://github.com/arirusso/unimidi/blob/master/examples/input.rb]
 * {output}[http://github.com/arirusso/unimidi/blob/master/examples/output.rb]
 
