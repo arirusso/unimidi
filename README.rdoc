@@ -31,7 +31,7 @@ Platform
 	
 == Usage
 
-Here's a {blog post}[http://tx81z.blogspot.com/2011/06/unimidi-platform-independent-realtime.html] with a quick tutorial to get started.
+Here's a {blog post}[http://tx81z.blogspot.com/2011/06/unimidi-platform-independent-realtime.html] with a quick tutorial to {get started}[http://tx81z.blogspot.com/2011/06/unimidi-platform-independent-realtime.html].
 
 Here's another {blog post}[http://tx81z.blogspot.com/2011/06/high-level-midi-io-with-ruby.html] that {explains how to do high-level messaging}[http://tx81z.blogspot.com/2011/06/high-level-midi-io-with-ruby.html]
 
@@ -43,7 +43,7 @@ In addition, some examples are included with the library
 
 {more examples}[http://github.com/arirusso/unimidi/blob/master/examples]
 
-Here's another {blog post}[http://tx81z.blogspot.com/2011/06/osx-unimidi-and-midi-patch-bay.html] about using unimidi with MIDI Patch Bay on OSX
+Here's another {blog post}[http://tx81z.blogspot.com/2011/06/osx-unimidi-and-midi-patch-bay.html] about {using unimidi with MIDI Patch Bay on OSX}[http://tx81z.blogspot.com/2011/06/osx-unimidi-and-midi-patch-bay.html]
 
 == Tests
 
