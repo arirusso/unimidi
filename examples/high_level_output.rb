@@ -40,3 +40,5 @@ end
 # take those three messages and output them
 
 messages.each { |message| @output.puts(message) }
+
+sleep(1)
