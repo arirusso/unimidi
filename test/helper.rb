@@ -30,6 +30,25 @@ module TestHelper
       end
     output    	
   end
+  
+  class MIDIObj
+    def initialize(*bytes)
+      @bytes = bytes
+    end
+    def to_bytes
+      @bytes
+    end
+  end 
+  
+  # some MIDI messages
+  VariousMIDIObjects = [
+    TestSysex ? MIDIObj.new(0xF0, 0x41, 0x10, 0x42, 0x12, 0x40, 0x00, 0x7F, 0x00, 0x41, 0xF7) : nil, # SysEx
+    MIDIObj.new(0x90, 100, 100), # note on
+    MIDIObj.new(0x90, 43, 100), # note on
+    MIDIObj.new(0x90, 76, 100), # note on
+    MIDIObj.new(0x90, 60, 100), # note on
+    MIDIObj.new(0x80, 100, 100) # note off
+  ].compact
     
   # some MIDI messages
   VariousMIDIMessages = [

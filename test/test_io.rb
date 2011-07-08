@@ -78,5 +78,40 @@ class IoTest < Test::Unit::TestCase
     end
 
   end
+  
+  # ** this test assumes that TestOutput is connected to TestInput
+  def test_full_io_objects
+    sleep(1)
+    messages = VariousMIDIObjects
+    messages_arr = messages.map { |m| m.to_bytes }.flatten
+    received_arr = []
+    pointer = 0
+    TestOutput.open do |output|
+      TestInput.open do |input|
+
+        messages.each do |msg|
+
+          $>.puts "sending: " + msg.inspect
+
+          output.puts(msg)
+          sleep(1)
+          received = input.gets.map { |m| m[:data] }.flatten
+          
+
+          $>.puts "received: " + received.inspect
+
+          assert_equal(messages_arr.slice(pointer, received.length), received)
+          
+          pointer += received.length
+          
+          received_arr += received
+          
+        end
+        
+        assert_equal(messages_arr.length, received_arr.length)
+
+      end
+    end
+  end
 
 end
