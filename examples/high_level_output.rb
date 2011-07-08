@@ -39,4 +39,4 @@ end
 
 # take those three messages and output them
 
-messages.each { |message| @output.puts(message.to_bytes) }
+messages.each { |message| @output.puts(message) }
