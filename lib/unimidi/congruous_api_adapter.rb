@@ -37,6 +37,7 @@ module UniMIDI
         base.send(:attr_reader, :name)
         base.send(:attr_reader, :id)
         base.send(:attr_reader, :type)
+        base.send(:alias_method, :direction, :type)
       end
 
       module ClassMethods
