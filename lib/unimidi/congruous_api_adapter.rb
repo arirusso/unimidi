@@ -27,6 +27,10 @@ module UniMIDI
         self
         end
       end
+      
+      def pretty_name
+        "#{id}: #{name}"
+      end
 
       # close the device
       def close(*a)
@@ -59,6 +63,11 @@ module UniMIDI
         # returns all devices in an array
         def all
           all_by_type.values.flatten
+        end
+        
+        # returns the device at <em>index</em>
+        def [](index)
+          all[index]
         end
 
         # returns all devices as a hash as such

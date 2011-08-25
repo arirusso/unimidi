@@ -6,16 +6,15 @@ class InputBufferTest < Test::Unit::TestCase
 
   include UniMIDI
   include TestHelper
-  include TestHelper::Config # before running these tests, adjust the constants in config.rb to suit your hardware setup
-  
+
  def test_input_buffer
     sleep(1)
 
     messages = VariousMIDIMessages
     bytes = []
 
-    TestOutput.open do |output|
-      TestInput.open do |input|
+    $test_device[:output].open do |output|
+      $test_device[:input].open do |input|
 
         messages.each do |msg|
 

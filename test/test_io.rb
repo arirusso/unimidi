@@ -6,7 +6,6 @@ class IoTest < Test::Unit::TestCase
 
   include UniMIDI
   include TestHelper
-  include TestHelper::Config # before running these tests, adjust the constants in config.rb to suit your hardware setup
 
   # ** this test assumes that TestOutput is connected to TestInput
   def test_full_io
@@ -15,8 +14,8 @@ class IoTest < Test::Unit::TestCase
     messages_arr = messages.inject { |a,b| a+b }.flatten
     received_arr = []
     pointer = 0
-    TestOutput.open do |output|
-      TestInput.open do |input|
+    $test_device[:output].open do |output|
+      $test_device[:input].open do |input|
 
         messages.each do |msg|
 
@@ -52,8 +51,8 @@ class IoTest < Test::Unit::TestCase
     received_str = ""
     pointer = 0
 
-    TestOutput.open do |output|
-      TestInput.open do |input|
+    $test_device[:output].open do |output|
+      $test_device[:input].open do |input|
 
         messages.each do |msg|
 
@@ -86,8 +85,8 @@ class IoTest < Test::Unit::TestCase
     messages_arr = messages.map { |m| m.to_bytes }.flatten
     received_arr = []
     pointer = 0
-    TestOutput.open do |output|
-      TestInput.open do |input|
+    $test_device[:output].open do |output|
+      $test_device[:input].open do |input|
 
         messages.each do |msg|
 

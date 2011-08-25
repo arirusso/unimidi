@@ -6,8 +6,7 @@ class PlatformTest < Test::Unit::TestCase
 
   include UniMIDI
   include TestHelper
-  include TestHelper::Config
-    
+  
   def test_jruby
     if RUBY_PLATFORM.include?("java")
       platform_test(MIDIJRubyAdapter, MIDIJRuby)
