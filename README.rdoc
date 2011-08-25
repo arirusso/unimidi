@@ -47,7 +47,7 @@ Here's another {blog post}[http://tx81z.blogspot.com/2011/06/osx-unimidi-and-mid
 
 == Tests
 
-There are a set of generic tests which assume that an output is connected to an input.  If you wish to run these tests, first edit {test/config.rb}[http://github.com/arirusso/unimidi/blob/master/test/config.rb] to configure it to your setup. 
+There are a set of tests which assume that an output is connected to an input.  You will be asked to select which input and output as the test is run.
 
 The tests can be run using
 
