@@ -67,7 +67,7 @@ module UniMIDI
         
         # returns the device at <em>index</em>
         def [](index)
-          all[index]
+          all[index] 
         end
 
         # returns all devices as a hash as such
