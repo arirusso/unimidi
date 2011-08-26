@@ -4,3 +4,4 @@
 .project
 *.gem
 *.gemspec
+*.gemspec.rb
