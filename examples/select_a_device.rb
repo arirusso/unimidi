@@ -48,6 +48,7 @@ output = UniMIDI::Output.first
 
 # or any of these
 
+output = UniMIDI::Output[0]
 output = UniMIDI::Output.all[0]
 output = UniMIDI::Output.all.first
 output = UniMIDI::Device.all_by_type(:output)[0]
