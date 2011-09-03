@@ -47,17 +47,13 @@ module UniMIDI
       module ClassMethods
         
         # returns the first device for this class
-        def first(*a)
-          dev = @deference[self].first(*a)
-          raise 'Device not found' if dev.nil?
-          new(dev)
+        def first(*a, &block)
+          use(@deference[self].first(*a), &block)
         end
 
         # returns the last device for this class
-        def last(*a)
-          dev = @deference[self].last(*a)
-          raise 'Device not found' if dev.nil?
-          new(dev)          
+        def last(*a, &block)
+          use(@deference[self].last(*a), &block)
         end
 
         # returns all devices in an array
@@ -66,8 +62,10 @@ module UniMIDI
         end
         
         # returns the device at <em>index</em>
-        def [](index)
-          all[index] 
+        def [](index, &block)
+          d = all[index] 
+          d.open(&block) unless block.nil?
+          d
         end
 
         # returns all devices as a hash as such
@@ -90,6 +88,15 @@ module UniMIDI
 
         def output_class(klass)
           @output_class = klass
+        end
+        
+        private
+        
+        def use(dev, &block)
+          raise 'Device not found' if dev.nil?
+          d = new(dev)
+          d.open(&block) unless block.nil?
+          d          
         end
 
       end
