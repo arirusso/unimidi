@@ -29,16 +29,19 @@ module TestHelper
     end
   end 
   
-  def platform_test(adapter, mod)
+  def platform_test(adapter, mod, device_class = nil, input_class = nil, output_class = nil)
+    device_class ||= mod::Device
+    input_class ||= mod::Input
+    output_class ||= mod::Output
     assert_equal(adapter, UniMIDI::Platform.instance.interface)
-    assert_not_same(mod::Input, UniMIDI::Input)
-    assert_not_same(mod::Output, UniMIDI::Output)
-    assert_not_same(mod::Device, UniMIDI::Device)
-    assert_equal(mod::Input.first.name, UniMIDI::Input.first.name)
-    assert_equal(mod::Input.first.id, UniMIDI::Input.first.id)
-    assert_not_same(mod::Output.first, UniMIDI::Output.first)
-    assert_equal(mod::Output.first.name, UniMIDI::Output.first.name)
-    assert_equal(mod::Output.first.id, UniMIDI::Output.first.id)
+    assert_not_same(input_class, UniMIDI::Input)
+    assert_not_same(output_class, UniMIDI::Output)
+    assert_not_same(device_class, UniMIDI::Device)
+    assert_equal(input_class.first.name, UniMIDI::Input.first.name)
+    assert_equal(input_class.first.id, UniMIDI::Input.first.id)
+    assert_not_same(output_class.first, UniMIDI::Output.first)
+    assert_equal(output_class.first.name, UniMIDI::Output.first.name)
+    assert_equal(output_class.first.id, UniMIDI::Output.first.id)
   end
 	    
   def bytestrs_to_ints(arr)

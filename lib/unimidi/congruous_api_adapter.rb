@@ -13,6 +13,10 @@ module UniMIDI
         @name = @device.name
         @type = @device.type
       end
+      
+      def enabled?
+        @device.enabled
+      end
 
       # enable the device for use, can be passed a block to which the device will be passed back
       def open(*a, &block)
@@ -47,13 +51,13 @@ module UniMIDI
       module ClassMethods
         
         # returns the first device for this class
-        def first(*a, &block)
-          use(@deference[self].first(*a), &block)
+        def first(&block)
+          use_device(all.first, &block)
         end
 
         # returns the last device for this class
-        def last(*a, &block)
-          use(@deference[self].last(*a), &block)
+        def last(&block)
+          use_device(all.last, &block)
         end
 
         # returns all devices in an array
@@ -62,24 +66,28 @@ module UniMIDI
         end
         
         # returns the device at <em>index</em>
-        def [](index, &block)
-          d = all[index] 
-          d.open(&block) unless block.nil?
-          d
+        def use(index, &block)
+          use_device(all[index], &block) 
+        end
+        
+        def [](index)
+          all[index]
         end
 
         # returns all devices as a hash as such
         #   { :input => [input devices], :output => [output devices] }
         def all_by_type
-          {
-            :input => @deference[self].all_by_type[:input].map { |d| @input_class.new(d) },
-            :output => @deference[self].all_by_type[:output].map { |d| @output_class.new(d) }
-          }
+          ensure_initialized
+          @devices
         end
 
         def defer_to(klass)
           @deference ||= {}
           @deference[self] = klass
+        end
+        
+        def device_class(klass)
+          @device_class = klass
         end
 
         def input_class(klass)
@@ -90,13 +98,24 @@ module UniMIDI
           @output_class = klass
         end
         
+        def populate
+          klass = @deference[self].respond_to?(:all_by_type) ? @deference[self] : @device_class
+          @devices = {
+            :input => klass.all_by_type[:input].map { |d| @input_class.new(d) },
+            :output => klass.all_by_type[:output].map { |d| @output_class.new(d) }
+          }          
+        end
+        alias_method :refresh, :populate
+        
         private
         
-        def use(dev, &block)
-          raise 'Device not found' if dev.nil?
-          d = new(dev)
-          d.open(&block) unless block.nil?
-          d          
+        def ensure_initialized
+          populate if @devices.nil?
+        end
+        
+        def use_device(device, &block)
+          device.open(&block) unless block.nil?
+          device         
         end
 
       end
@@ -184,7 +203,7 @@ module UniMIDI
 
     # returns all inputs
     def self.all
-      @deference[self].all.map { |d| new(d) }
+      UniMIDI::Device.all_by_type[:input]
     end
 
   end
@@ -232,7 +251,7 @@ module UniMIDI
 
     # returns all outputs
     def self.all
-      @deference[self].all.map { |d| new(d) }
+      UniMIDI::Device.all_by_type[:output]
     end
 
   end

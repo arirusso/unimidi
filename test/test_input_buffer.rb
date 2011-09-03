@@ -15,6 +15,8 @@ class InputBufferTest < Test::Unit::TestCase
 
     $test_device[:output].open do |output|
       $test_device[:input].open do |input|
+        
+        input.buffer.clear
 
         messages.each do |msg|
 

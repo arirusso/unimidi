@@ -9,10 +9,12 @@ module UniMIDI
     
     class Input < CongruousApiInput
       defer_to MIDIWinMM::Input
+      device_class MIDIWinMM::Device
     end
 
     class Output < CongruousApiOutput
       defer_to MIDIWinMM::Output
+      device_class MIDIWinMM::Device
     end
     
     class Device < CongruousApiDevice

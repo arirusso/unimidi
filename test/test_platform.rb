@@ -21,7 +21,7 @@ class PlatformTest < Test::Unit::TestCase
   
   def test_osx
     if RUBY_PLATFORM.include?("darwin")
-      platform_test(CoreMIDIAdapter, CoreMIDI)
+      platform_test(CoreMIDIAdapter, CoreMIDI, CoreMIDI::Endpoint, CoreMIDI::Source, CoreMIDI::Destination)
     end  
   end
   

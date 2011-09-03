@@ -14,7 +14,7 @@ duration = 0.1
 # UniMIDI::Device.all.to_s will list your midi devices
 # or amidi -l from the command line
 
-UniMIDI::Output.first.open do |output|
+UniMIDI::Output.first do |output|
 
   (0..((octaves-1)*12)).step(12) do |oct|
 

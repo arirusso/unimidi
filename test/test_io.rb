@@ -16,7 +16,9 @@ class IoTest < Test::Unit::TestCase
     pointer = 0
     $test_device[:output].open do |output|
       $test_device[:input].open do |input|
-
+        
+        input.buffer.clear
+        
         messages.each do |msg|
 
           $>.puts "sending: " + msg.inspect
@@ -87,7 +89,9 @@ class IoTest < Test::Unit::TestCase
     pointer = 0
     $test_device[:output].open do |output|
       $test_device[:input].open do |input|
-
+ 
+        #input.buffer.clear
+        
         messages.each do |msg|
 
           $>.puts "sending: " + msg.inspect

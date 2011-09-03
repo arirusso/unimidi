@@ -1,5 +1,6 @@
-dir = File.dirname(File.expand_path(__FILE__))
-$LOAD_PATH.unshift dir
+$:.unshift File.join( File.dirname( __FILE__ ))
+$:.unshift File.join( File.dirname( __FILE__ ), 'lib')
+
 
 require 'rake'
 require 'rake/testtask'
