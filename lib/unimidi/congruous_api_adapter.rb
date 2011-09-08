@@ -65,7 +65,7 @@ module UniMIDI
           all_by_type.values.flatten
         end
         
-        # returns the device at <em>index</em>
+        # returns the device at <em>index</em> and opens it
         def use(index, &block)
           index = case index
             when :first then 0
@@ -76,6 +76,7 @@ module UniMIDI
         end
         alias_method :open, :use
         
+        # returns the device at <em>index</em>
         def [](index)
           all[index]
         end
