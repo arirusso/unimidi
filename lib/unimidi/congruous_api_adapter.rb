@@ -67,6 +67,11 @@ module UniMIDI
         
         # returns the device at <em>index</em>
         def use(index, &block)
+          index = case index
+            when :first then 0
+            when :last then all.size - 1
+            else index
+          end
           use_device(all[index], &block) 
         end
         alias_method :open, :use
@@ -115,7 +120,7 @@ module UniMIDI
         end
         
         def use_device(device, &block)
-          device.open(&block) unless block.nil?
+          device.open(&block)
           device         
         end
 

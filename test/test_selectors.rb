@@ -48,6 +48,14 @@ class SelectorTest < Test::Unit::TestCase
     assert_equal(Input.all.first, i)    
   end
   
+  def test_use_with_symbol
+    sleep(1)
+    i = Input.use(:first)
+    assert_equal(true, i.enabled?) 
+    assert_equal(Input.first, i)
+    assert_equal(Input.all.first, i)       
+  end
+  
   def test_all
     i = Input.all
     assert_equal(Device.all_by_type[:input], Input.all)
