@@ -69,6 +69,7 @@ module UniMIDI
         def use(index, &block)
           use_device(all[index], &block) 
         end
+        alias_method :open, :use
         
         def [](index)
           all[index]
