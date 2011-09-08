@@ -11,7 +11,7 @@ module UniMIDI
         @device = device_obj
         @id = @device.id
         @name = @device.name
-        @type = @device.type
+        populate_type
       end
       
       def enabled?
@@ -118,6 +118,15 @@ module UniMIDI
           device         
         end
 
+      end
+      
+      private
+      
+      def populate_type
+        @type = case @device.type
+          when :source, :input then :input
+          when :destination, :output then :output
+        end
       end
 
     end
