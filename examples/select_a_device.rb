@@ -57,9 +57,13 @@ output = UniMIDI::Device.all_by_type(:output).first
 # just use UniMIDI::Input the same way to select an input
 
 # normally, after you select a device this way, you need to call
-# {open}[http://rdoc.info/gems/unimidi/UniMIDI/CongruousApiAdapter/Device#open-instance_method] on the Device object.  In order to streamline this in to selection, use the {use}[http://rdoc.info/gems/unimidi/UniMIDI/CongruousApiAdapter/Device/ClassMethods#use-instance_method] method as such:
+# <em>#open</em> on the Device object in order to enable it.
+
+output.open
+
+# In order to streamline this in to selection, use the <em>#use</em> method as such:
 
 output = UniMIDI::Output.use(:first)
 output = UniMIDI::Output.use(0)
 
-# these both return the first Output
+# these both return the first Output, already enabled
