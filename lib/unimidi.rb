@@ -22,8 +22,10 @@ module UniMIDI
   
   def self.command(command, options = {})
     if [:l, :list, :list_devices].include?(command)
-      require 'pp'
-      pp Device::all
+      puts "input:"
+      Input.list
+      puts "output:"
+      Output.list
     else
       raise "Command #{command.to_s} not found"
     end      
