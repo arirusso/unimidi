@@ -33,7 +33,7 @@ module UniMIDI
       end
       
       def pretty_name
-        "#{id}: #{name}"
+        "#{id}) #{name}"
       end
 
       # close the device
@@ -49,6 +49,29 @@ module UniMIDI
       end
 
       module ClassMethods
+        
+        def list
+          all.each { |device| puts(device.pretty_name) }
+        end
+        
+        # streamlined console prompt that asks the user to select a device
+        def gets
+          device = nil
+          class_name = self.name.split("::").last.downcase
+          grammer = %w{o i}.include?(class_name[0]) ? "n" : ""
+          puts ""
+          puts "Select a#{grammer} #{class_name}..."
+          while device.nil?
+            list
+            print "> "
+            selection = $stdin.gets.chomp
+            if selection != ""
+              selection = Integer(selection) rescue nil
+              device = all.find { |d| d.id == selection }
+            end
+          end
+          device
+        end
         
         # returns the first device for this class
         def first(&block)

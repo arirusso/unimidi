@@ -12,20 +12,8 @@ module TestHelper
   
   def self.select_devices
     $test_device ||= {}
-    { :input => UniMIDI::Input.all, :output => UniMIDI::Output.all }.each do |type, devs|
-      puts ""
-      puts "select an #{type.to_s}..."
-      while $test_device[type].nil?
-        devs.each do |device|
-          puts device.pretty_name
-        end
-        selection = $stdin.gets.chomp
-        if selection != ""
-          selection = selection.to_i
-          $test_device[type] = devs.find { |d| d.id == selection }
-          puts "selected #{selection} for #{type.to_s}" unless $test_device[type]
-        end
-      end
+    { :input => UniMIDI::Input, :output => UniMIDI::Output }.each do |type, klass|
+      $test_device[type] = klass.gets
     end
   end 
   

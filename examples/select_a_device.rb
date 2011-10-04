@@ -8,9 +8,25 @@ require 'pp'
 #
 # first, take a look at the MIDI outputs that are available on your computer
 
-pp UniMIDI::Output.all
+UniMIDI::Output.list
 
 # this will output something like
+
+# 1) IAC Device
+# 2) Roland UM-2 (1)
+# 3) Roland UM-2 (2)
+
+# or 
+
+output = UniMIDI::Output.gets
+
+# for a fully constructed user prompt that returns an enabled device
+
+# you can also do
+
+pp UniMIDI::Output.all
+
+# for a fully inspected list of device objects
 
 # [#<UniMIDI::AlsaRawMIDIAdapter::Output:0x8450ecc
 #   @device=
