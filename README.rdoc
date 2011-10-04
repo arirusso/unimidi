@@ -31,9 +31,12 @@ Platform
 	
 == Usage
 
-Here's a {blog post}[http://tx81z.blogspot.com/2011/06/unimidi-platform-independent-realtime.html] with a quick tutorial to {get started}[http://tx81z.blogspot.com/2011/06/unimidi-platform-independent-realtime.html].
+==== Blog Posts
 
-Here's another {blog post}[http://tx81z.blogspot.com/2011/06/high-level-midi-io-with-ruby.html] that {explains how to do high-level messaging}[http://tx81z.blogspot.com/2011/06/high-level-midi-io-with-ruby.html]
+* {general tutorial}[http://tx81z.blogspot.com/2011/06/unimidi-platform-independent-realtime.html]
+* {selecting a device}[http://tx81z.blogspot.com/2011/10/selecting-midi-device-with-unimidi.html]
+* {internally patching in OSX}[http://tx81z.blogspot.com/2011/06/osx-unimidi-and-midi-patch-bay.html]
+* {with MicroMIDI DSL}[http://tx81z.blogspot.com/2011/08/micromidi-ruby-dsl-for-midi.html]
 
 In addition, some examples are included with the library
 
@@ -41,9 +44,7 @@ In addition, some examples are included with the library
 * {input}[http://github.com/arirusso/unimidi/blob/master/examples/input.rb]
 * {output}[http://github.com/arirusso/unimidi/blob/master/examples/output.rb]
 
-{more examples}[http://github.com/arirusso/unimidi/blob/master/examples]
-
-Here's another {blog post}[http://tx81z.blogspot.com/2011/06/osx-unimidi-and-midi-patch-bay.html] about {using unimidi with MIDI Patch Bay on OSX}[http://tx81z.blogspot.com/2011/06/osx-unimidi-and-midi-patch-bay.html]
+{more...}[http://github.com/arirusso/unimidi/blob/master/examples]
 
 == Tests
 
