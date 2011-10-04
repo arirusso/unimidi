@@ -58,9 +58,8 @@ module UniMIDI
         def gets
           device = nil
           class_name = self.name.split("::").last.downcase
-          grammer = %w{o i}.include?(class_name[0]) ? "n" : ""
           puts ""
-          puts "Select a#{grammer} #{class_name}..."
+          puts "Select a MIDI #{class_name}..."
           while device.nil?
             list
             print "> "
@@ -70,7 +69,7 @@ module UniMIDI
               device = all.find { |d| d.id == selection }
             end
           end
-          device
+          device.open
         end
         
         # returns the first device for this class
