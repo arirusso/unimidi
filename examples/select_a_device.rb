@@ -7,11 +7,12 @@ require 'unimidi'
 # This is an example that explains how to select an output.
 #
 
-# The simplest way to select an output is to prompt the user for selection in the Ruby console
+# The simplest and most useful way to select an output is to prompt the user for selection in 
+# the Ruby console
 
 output = UniMIDI::Output.gets
 
-# the user will see a list like:
+# the user will see a list that represents their personal MIDI configuration like:
 
 # Select a MIDI output
 # 1) IAC Device
@@ -21,8 +22,7 @@ output = UniMIDI::Output.gets
 
 # and be prompted to select a number
 
-# once they've selected, the #gets method returns the device which corresponds with
-# their selection
+# once they've selected, the device that corresponds with their selection is returned
 
 # and it's returned open so you don't need to call output.open ever
 
