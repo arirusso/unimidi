@@ -2,84 +2,52 @@
 $:.unshift File.join( File.dirname( __FILE__ ), '../lib')
 
 require 'unimidi'
-require 'pp'
 
+#
 # This is an example that explains how to select an output.
 #
-# first, take a look at the MIDI outputs that are available on your computer
 
-UniMIDI::Output.list
-
-# this will output something like
-
-# 1) IAC Device
-# 2) Roland UM-2 (1)
-# 3) Roland UM-2 (2)
-
-# or 
+# The simplest way to select an output is to prompt the user for selection in the Ruby console
 
 output = UniMIDI::Output.gets
 
-# for a fully constructed user prompt that returns an enabled device
+# the user will see a list like:
 
-# you can also do
+# Select a MIDI output
+# 1) IAC Device
+# 2) Roland UM-2 (1)
+# 3) Roland UM-2 (2)
+# >
 
-pp UniMIDI::Output.all
+# and be prompted to select a number
 
-# for a fully inspected list of device objects
+# once they've selected, the #gets method returns the device which corresponds with
+# their selection
 
-# [#<UniMIDI::AlsaRawMIDIAdapter::Output:0x8450ecc
-#   @device=
-#    #<AlsaRawMIDI::Output:0x8067f7c
-#     @enabled=false,
-#     @id=2,
-#     @name="UM-2",
-#     @subname="UM-2 MIDI 1",
-#     @system_id="hw:1,0,0",
-#     @type=:output>,
-#   @id=2,
-#   @name="UM-2",
-#   @type=:output>,
-#  #<UniMIDI::AlsaRawMIDIAdapter::Output:0x8450eb8
-#   @device=
-#    #<AlsaRawMIDI::Output:0x8067c0c
-#     @enabled=false,
-#     @id=3,
-#     @name="UM-2",
-#     @subname="UM-2 MIDI 2",
-#     @system_id="hw:1,0,1",
-#     @type=:output>,
-#   @id=3,
-#   @name="UM-2",
-#   @type=:output>]
+# and it's returned open so you don't need to call output.open ever
 
+# you can also hard code the selection like this
 
-# this matches my particular setup in Linux using an Edirol UM-2 MIDI adapter
+output = UniMIDI::Output.use(:first)
+output = UniMIDI::Output.use(0)
 
-# as you can see, there's two outputs
+# or 
 
-# to get a hold of the first one, you can use
+output = UniMIDI::Output.open(:first)
+output = UniMIDI::Output.open(0)
+
+# this also returns an open device 
+
+# if you want to wait to open the device, you can select it with any of these "finder" methods
 
 output = UniMIDI::Output.first
-
-# or any of these
-
 output = UniMIDI::Output[0]
 output = UniMIDI::Output.all[0]
 output = UniMIDI::Output.all.first
 output = UniMIDI::Device.all_by_type(:output)[0]
 output = UniMIDI::Device.all_by_type(:output).first
 
-# just use UniMIDI::Input the same way to select an input
-
-# normally, after you select a device this way, you need to call
-# <em>#open</em> on the Device object in order to enable it.
+# but again, you'll need to call open on it before you use it or you'll get an exception
 
 output.open
 
-# In order to streamline this in to selection, use the <em>#use</em> method as such:
-
-output = UniMIDI::Output.use(:first)
-output = UniMIDI::Output.use(0)
-
-# these both return the first Output, already enabled
