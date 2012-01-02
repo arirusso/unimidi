@@ -56,7 +56,7 @@ module UniMIDI
         end
         
         # streamlined console prompt that asks the user to select a device
-        def gets
+        def gets(&block)
           device = nil
           class_name = self.name.split("::").last.downcase
           puts ""
@@ -70,7 +70,7 @@ module UniMIDI
               device = all.find { |d| d.id == selection }
             end
           end
-          device.open
+          device.open(&block)
         end
         
         # returns the first device for this class
