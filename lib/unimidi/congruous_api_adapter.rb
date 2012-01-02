@@ -21,7 +21,7 @@ module UniMIDI
       # enable the device for use, can be passed a block to which the device will be passed back
       def open(*a, &block)
         @device.open(*a) unless enabled?
-        unless block.nil?
+        if block_given?
           begin
             yield(self)
           ensure
