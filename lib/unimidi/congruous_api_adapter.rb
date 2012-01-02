@@ -50,6 +50,7 @@ module UniMIDI
 
       module ClassMethods
         
+        # prints ids and names of each device to the console
         def list
           all.each { |device| puts(device.pretty_name) }
         end
