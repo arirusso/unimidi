@@ -4,7 +4,7 @@
 
 Platform independent realtime MIDI input and output for Ruby.
 
-Also see <a href="http://github.com/arirusso/micromidi">micromidi</a> which builds a full MIDI messaging DSL on top of unimidi
+Also see {micromidi}[http://github.com/arirusso/micromidi] which builds a full MIDI messaging DSL on top of unimidi
 
 == Features
 
