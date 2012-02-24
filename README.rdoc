@@ -4,13 +4,15 @@
 
 Platform independent realtime MIDI input and output for Ruby.
 
+Also see <a href="http://github.com/arirusso/micromidi">micromidi</a> which builds a full MIDI messaging DSL on top of unimidi
+
 == Features
 
 * Supports Linux, JRuby, OSX, Windows and Cygwin
 * No compilation required
 * Both input and output to and from multiple devices concurrently
 * Agnostically handle different MIDI and SysEx Message types
-* (OSX Only) Internally patch to other programs using IAC and {MIDI Patch Bay}[http://www.apple.com/downloads/macosx/audio/midipatchbay.html]
+* (OSX Only) Use IAC to internally route MIDI to other programs
 
 == Requirements
 
