@@ -13,7 +13,7 @@ num_messages = 10
 # UniMIDI::Device.all.to_s will list your midi devices
 # or amidi -l from the command line
 
-UniMIDI::Input.first.open do |input|
+UniMIDI::Input.gets do |input|
 
   $>.puts "send some MIDI to your input now..."
 
