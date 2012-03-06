@@ -5,9 +5,10 @@ require 'unimidi'
 
 #
 # This is an example that explains how to select an output.
+# It's not really meant to be run.
 #
 
-# The simplest and most useful way to select an output is to prompt the user for selection in 
+# The simplest way to select an output is to prompt the user for selection in 
 # the Ruby console
 
 output = UniMIDI::Output.gets

@@ -5,15 +5,13 @@ $LOAD_PATH.unshift dir + '/../lib'
 
 require 'unimidi'
 
-# this program selects the first midi input and sends an inspection of the first 10 messages
+# this program prompts the user to select a midi input and sends an inspection of the first 10 messages
 # messages it receives to standard out
 
 num_messages = 10
 
-# UniMIDI::Device.all.to_s will list your midi devices
-# or amidi -l from the command line
-
-UniMIDI::Input.gets do |input|
+# prompt the user
+UniMIDI::Input.gets do |input| # using their selection...
 
   $>.puts "send some MIDI to your input now..."
 
