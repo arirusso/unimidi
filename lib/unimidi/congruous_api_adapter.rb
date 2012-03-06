@@ -184,6 +184,8 @@ module UniMIDI
     #
     def gets(*a)
       @device.gets(*a)
+    rescue SystemExit, Interrupt
+      exit
     end
 
     #
@@ -196,6 +198,8 @@ module UniMIDI
     #
     def gets_s(*a)
       @device.gets_s(*a)
+    rescue SystemExit, Interrupt
+      exit
     end
     alias_method :gets_bytestr, :gets_s
     alias_method :gets_hex, :gets_s
