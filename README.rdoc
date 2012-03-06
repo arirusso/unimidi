@@ -45,8 +45,7 @@ In addition, some examples are included with the library
 * {selecting a device}[http://github.com/arirusso/unimidi/blob/master/examples/select_a_device.rb]
 * {input}[http://github.com/arirusso/unimidi/blob/master/examples/input.rb]
 * {output}[http://github.com/arirusso/unimidi/blob/master/examples/output.rb]
-
-{more...}[http://github.com/arirusso/unimidi/blob/master/examples]
+* {sysex output}[http://github.com/arirusso/unimidi/blob/master/examples/sysex_output.rb]
 
 == Tests
 
