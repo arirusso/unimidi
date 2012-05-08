@@ -28,7 +28,10 @@ module UniMIDI
             close
           end
         else
-        self
+          at_exit do
+            close
+          end
+          self
         end
       end
       
