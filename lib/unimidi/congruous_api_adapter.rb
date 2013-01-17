@@ -143,7 +143,11 @@ module UniMIDI
         private
         
         def ensure_initialized
-          populate if @devices.nil?
+          populate unless initialized?
+        end
+
+        def initialized?
+          instance_variable_defined?(:@devices) && !@devices.nil?
         end
         
         def use_device(device, &block)
