@@ -217,7 +217,7 @@ module UniMIDI
     #
     def gets_data(*a)
       arr = gets
-      arr.map { |msg| msg[:data] }.inject { |a,b| a + b }
+      arr.map { |msg| msg[:data] }.inject(:+)
     end
 
     #
