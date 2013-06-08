@@ -4,6 +4,7 @@ module UniMIDI
 
     module Device
 
+      # Store the adapted versions of the device classes
       class Cache
 
         class << self
