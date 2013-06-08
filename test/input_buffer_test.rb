@@ -1,11 +1,6 @@
-#!/usr/bin/env ruby
-
 require 'helper'
 
-class InputBufferTest < Test::Unit::TestCase
-
-  include UniMIDI
-  include TestHelper
+class InputBufferTest < UniMIDI::TestCase
 
  def test_input_buffer
     sleep(1)

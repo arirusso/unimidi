@@ -1,11 +1,6 @@
-#!/usr/bin/env ruby
-
 require 'helper'
 
-class SelectorTest < Test::Unit::TestCase
-
-  include UniMIDI
-  include TestHelper
+class SelectorTest < UniMIDI::TestCase
 
   def test_first
     i = Input.first

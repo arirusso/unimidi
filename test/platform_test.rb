@@ -1,11 +1,6 @@
-#!/usr/bin/env ruby
-
 require 'helper'
 
-class PlatformTest < Test::Unit::TestCase
-
-  include UniMIDI
-  include TestHelper
+class PlatformTest < UniMIDI::TestCase
   
   def test_jruby
     if RUBY_PLATFORM.include?("java")

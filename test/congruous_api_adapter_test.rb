@@ -1,11 +1,6 @@
-#!/usr/bin/env ruby
-
 require 'helper'
 
-class CongruousApiAdapterTest < Test::Unit::TestCase
-
-  include UniMIDI
-  include TestHelper
+class CongruousApiAdapterTest < UniMIDI::TestCase
   
   def test_input_type
     i = $test_device[:input]

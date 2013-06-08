@@ -1,11 +1,6 @@
-#!/usr/bin/env ruby
-
 require 'helper'
 
-class IoTest < Test::Unit::TestCase
-
-  include UniMIDI
-  include TestHelper
+class IoTest < UniMIDI::TestCase
 
   # ** this test assumes that TestOutput is connected to TestInput
   def test_full_io
