@@ -4,28 +4,28 @@ module UniMIDI
 
   module CoreMIDIAdapter
 
-    CongruousApiAdapter::Device::Cache.source_key = { :input => :source, :output => :destination }
+    CongruousApiAdapter::DeviceCache.source_key = { :input => :source, :output => :destination }
 
     class Input
-      extend CongruousApiAdapter::Device::ClassMethods
-      include CongruousApiAdapter::Device::InstanceMethods
-      include CongruousApiAdapter::Input
+      extend CongruousApiAdapter::ClassMethods
+      include CongruousApiAdapter::InstanceMethods
+      include CongruousApiAdapter::InputMethods
 
       adapts CoreMIDI::Endpoint
     end
 
     class Output
-      extend CongruousApiAdapter::Device::ClassMethods
-      include CongruousApiAdapter::Device::InstanceMethods
-      include CongruousApiAdapter::Output
+      extend CongruousApiAdapter::ClassMethods
+      include CongruousApiAdapter::InstanceMethods
+      include CongruousApiAdapter::OutputMethods
 
       adapts CoreMIDI::Endpoint
 
     end
 
     class Device
-      extend CongruousApiAdapter::Device::ClassMethods
-      extend CongruousApiAdapter::Device
+      extend CongruousApiAdapter::ClassMethods
+      extend CongruousApiAdapter::DeviceMethods
 
       input_class Input
       output_class Output
