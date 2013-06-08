@@ -4,17 +4,17 @@ module UniMIDI
 
   module MIDIWinMMAdapter
     
-    class Input < CongruousApiInput
+    class Input < CongruousApiAdapter::Input
       defer_to MIDIWinMM::Input
       device_class MIDIWinMM::Device
     end
 
-    class Output < CongruousApiOutput
+    class Output < CongruousApiAdapter::Output
       defer_to MIDIWinMM::Output
       device_class MIDIWinMM::Device
     end
     
-    class Device < CongruousApiDevice
+    class Device < CongruousApiAdapter::Device
       defer_to MIDIWinMM::Device
       input_class Input
       output_class Output
