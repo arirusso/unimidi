@@ -2,7 +2,7 @@ module UniMIDI
 
   module CongruousApiAdapter
 
-    module Input
+    module InputMethods
 
       module ClassMethods
 
