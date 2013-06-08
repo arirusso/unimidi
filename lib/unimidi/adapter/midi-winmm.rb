@@ -1,6 +1,3 @@
-#!/usr/bin/env ruby
-#
-
 require 'midi-winmm'
 
 module UniMIDI

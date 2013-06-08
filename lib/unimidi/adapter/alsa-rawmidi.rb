@@ -1,6 +1,3 @@
-#!/usr/bin/env ruby
-#
-
 require 'alsa-rawmidi'
 
 module UniMIDI
