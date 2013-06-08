@@ -1,8 +1,3 @@
-#!/usr/bin/env ruby
-#
-
-require 'singleton'
-
 module UniMIDI
   
   class Platform
@@ -17,7 +12,6 @@ module UniMIDI
         when /java/ then "midi-jruby"
         when /linux/ then "alsa-rawmidi"
         when /mingw/ then "midi-winmm"
-        #when /win/ then "midi-winmm"
       end
       require("unimidi/adapter/#{lib}")
       @interface = case RUBY_PLATFORM
@@ -25,11 +19,9 @@ module UniMIDI
         when /java/ then MIDIJRubyAdapter
         when /linux/ then AlsaRawMIDIAdapter
         when /mingw/ then MIDIWinMMAdapter
-        #when /win/ then MIDIWinMMAdapter
       end
     end
 
   end
 
 end
-
