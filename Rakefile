@@ -1,15 +1,13 @@
 $:.unshift File.join( File.dirname( __FILE__ ))
 $:.unshift File.join( File.dirname( __FILE__ ), 'lib')
 
-
 require 'rake'
 require 'rake/testtask'
 require 'unimidi'
 
 Rake::TestTask.new(:test) do |t|
-
   t.libs << "test"
-  t.test_files = FileList["test/**/test_*.rb"]
+  t.test_files = FileList["test/**/*_test.rb"]
   t.verbose = true
 end
 
