@@ -2,8 +2,10 @@ module UniMIDI
 
   module CongruousApiAdapter
 
+    # Class methods that an adapter device class will use
     module ClassMethods
 
+      # Automatically extend the DSL for shortcuts in class definitions
       def self.extended(base)
         base.send(:extend, CongruousApiAdapter::DSL)
       end

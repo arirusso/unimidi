@@ -2,17 +2,19 @@ module UniMIDI
 
   module CongruousApiAdapter
 
+    # Instance and class methods used by an input device adapter
     module InputMethods
 
       module ClassMethods
 
-        # All inputs
+        # An array of all inputs
         def all
           UniMIDI::Device.all_by_type[:input]
         end
 
       end
 
+      # Automatically include the class methods and set up simple delegators
       def self.included(base)
         base.send(:extend, ClassMethods)
         base.send(:extend, Forwardable)
@@ -52,10 +54,7 @@ module UniMIDI
       alias_method :gets_bytestr, :gets_s
       alias_method :gets_hex, :gets_s
 
-      #
-      # Similar to Input#gets but returns an array of data bytes such as
-      #   [144, 60, 100, 128, 60, 100, 144, 40, 120]
-      #
+      # Similar to Input#gets but returns an array of data bytes such as [144, 60, 100, 128, 60, 100, 144, 40, 120]
       def gets_data(*a)
         arr = gets
         arr.map { |msg| msg[:data] }.inject(:+)
@@ -74,17 +73,17 @@ module UniMIDI
         @device.buffer.clear
       end
 
-      # Gets any messages in the buffer in the same format as CongruousApiInput#gets 
+      # Any messages in the buffer in the same format as CongruousApiInput#gets 
       def gets_buffer(*a)
         @device.buffer
       end
 
-      # Gets any messages in the buffer in the same format as CongruousApiInput#gets_s
+      # Any messages in the buffer in the same format as CongruousApiInput#gets_s
       def gets_buffer_s(*a)
         @device.buffer.map { |msg| msg[:data] = TypeConversion.numeric_byte_array_to_hex_string(msg[:data]); msg }
       end
 
-      # Gets any messages in the buffer in the same format as CongruousApiInput#gets_data
+      # Any messages in the buffer in the same format as CongruousApiInput#gets_data
       def gets_buffer_data(*a)
         @device.buffer.map { |msg| msg[:data] }
       end

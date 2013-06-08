@@ -2,17 +2,19 @@ module UniMIDI
 
   module CongruousApiAdapter
 
+    # Instance and class methods used by an output device adapter
     module OutputMethods
 
       module ClassMethods
 
-        # All outputs
+        # An array of all outputs
         def all
           UniMIDI::Device.all_by_type[:output]
         end
 
       end
 
+      # Automatically include class methods
       def self.included(base)
         base.send(:extend, ClassMethods)
       end

@@ -2,9 +2,10 @@ module UniMIDI
 
   module CongruousApiAdapter
 
+    # Class methods used by the outer device module adapter
     module DeviceMethods
 
-      # All devices
+      # An array of all devices
       def all
         all_by_type.values.flatten
       end
