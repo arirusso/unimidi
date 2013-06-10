@@ -90,7 +90,6 @@ class IoTest < UniMIDI::TestCase
         messages.each do |msg|
 
           $>.puts "sending: " + msg.inspect
-
           output.puts(msg)
           sleep(1)
           received = input.gets.map { |m| m[:data] }.flatten

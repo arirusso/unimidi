@@ -8,7 +8,7 @@ module UniMIDI
 
   module TestHelper
 
-    TestSysex = !RUBY_PLATFORM.include?("java")
+    TestSysex = !RUBY_PLATFORM.include?("java") # java has problems with sysex messages on some versions of osx
 
     def self.select_devices
       $test_device ||= {}
@@ -16,21 +16,6 @@ module UniMIDI
         $test_device[type] = klass.gets
       end
     end 
-
-    def platform_test(adapter, mod, device_class = nil, input_class = nil, output_class = nil)
-      device_class ||= mod::Device
-      input_class ||= mod::Input
-      output_class ||= mod::Output
-      assert_equal(adapter, UniMIDI::Platform.instance.interface)
-      assert_not_same(input_class, UniMIDI::Input)
-      assert_not_same(output_class, UniMIDI::Output)
-      assert_not_same(device_class, UniMIDI::Device)
-      assert_equal(input_class.first.name, UniMIDI::Input.first.name)
-      assert_equal(input_class.first.id, UniMIDI::Input.first.id)
-      assert_not_same(output_class.first, UniMIDI::Output.first)
-      assert_equal(output_class.first.name, UniMIDI::Output.first.name)
-      assert_equal(output_class.first.id, UniMIDI::Output.first.id)
-    end
 
     def bytestrs_to_ints(arr)
       data = arr.map { |m| m[:data] }.join
