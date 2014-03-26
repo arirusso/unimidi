@@ -50,11 +50,16 @@ module UniMIDI
 
       module ClassMethods
         
-        # prints ids and names of each device to the console
+        # Prints ids and names of each device to the console
         def list
           all.each { |device| puts(device.pretty_name) }
         end
-        
+
+        # Shortcut to get a device by its name
+        def find_by_name(name)
+          all.find { |device| name == device.name }
+        end
+
         # streamlined console prompt that asks the user to select a device
         def gets(&block)
           device = nil
