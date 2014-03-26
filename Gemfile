@@ -1,5 +1,7 @@
 source "https://rubygems.org"
 
+gemspec :name => "unimidi"
+
 case RUBY_PLATFORM
   when /darwin/ then gem "ffi-coremidi"
   when /java/ then gem "midi-jruby"
