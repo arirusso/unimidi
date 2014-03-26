@@ -1,4 +1,4 @@
-source :rubygems
+source "https://rubygems.org"
 
 case RUBY_PLATFORM
   when /darwin/ then gem "ffi-coremidi"
