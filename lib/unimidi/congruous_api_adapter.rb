@@ -60,6 +60,11 @@ module UniMIDI
           all.find { |device| name == device.name }
         end
 
+        # Shortcut to count inputs
+        def count
+          all.count
+        end
+
         # streamlined console prompt that asks the user to select a device
         def gets(&block)
           device = nil
