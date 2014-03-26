@@ -2,7 +2,7 @@
 # (c)2010-2013 Ari Russo and licensed under the Apache 2.0 License
 module UniMIDI
   
-  VERSION = "0.3.3"
+  VERSION = "0.3.5"
  
 end
 
