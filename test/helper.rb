@@ -1,36 +1,33 @@
 dir = File.dirname(File.expand_path(__FILE__))
 $LOAD_PATH.unshift dir + '/../lib'
 
-require 'test/unit'
-require 'unimidi'
+require "test/unit"
+require "mocha/test_unit"
+require "shoulda-context"
+require "unimidi"
 
 module UniMIDI
+
+  class TestDeviceHelper
+
+    def self.setup
+      if @test_devices.nil?
+        @test_devices = {}
+        { :input => UniMIDI::Input, :output => UniMIDI::Output }.each do |type, klass|
+          @test_devices[type] = klass.gets
+        end
+      end
+    end
+
+    def self.devices
+      @test_devices
+    end
+
+  end
 
   module TestHelper
 
     TestSysex = !RUBY_PLATFORM.include?("java")
-
-    def self.select_devices
-      $test_device ||= {}
-      { :input => UniMIDI::Input, :output => UniMIDI::Output }.each do |type, klass|
-        $test_device[type] = klass.gets
-      end
-    end 
-
-    def platform_test(adapter, mod, device_class = nil, input_class = nil, output_class = nil)
-      device_class ||= mod::Device
-      input_class ||= mod::Input
-      output_class ||= mod::Output
-      assert_equal(adapter, UniMIDI::Platform.instance.interface)
-      assert_not_same(input_class, UniMIDI::Input)
-      assert_not_same(output_class, UniMIDI::Output)
-      assert_not_same(device_class, UniMIDI::Device)
-      assert_equal(input_class.first.name, UniMIDI::Input.first.name)
-      assert_equal(input_class.first.id, UniMIDI::Input.first.id)
-      assert_not_same(output_class.first, UniMIDI::Output.first)
-      assert_equal(output_class.first.name, UniMIDI::Output.first.name)
-      assert_equal(output_class.first.id, UniMIDI::Output.first.id)
-    end
 
     def bytestrs_to_ints(arr)
       data = arr.map { |m| m[:data] }.join
@@ -87,5 +84,3 @@ module UniMIDI
   end
 
 end
-
-UniMIDI::TestHelper.select_devices

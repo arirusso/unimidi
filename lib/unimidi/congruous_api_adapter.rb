@@ -8,16 +8,19 @@ module UniMIDI
         @device = device_obj
         @id = @device.id
         @name = @device.name
+        @enabled = false
         populate_type
       end
       
       def enabled?
-        @device.enabled
+        @enabled = true if @device.enabled # keep the adapter in sync
+        @enabled
       end
 
       # enable the device for use, can be passed a block to which the device will be passed back
       def open(*a, &block)
         @device.open(*a) unless enabled?
+        @enabled = true
         if block_given?
           begin
             yield(self)
@@ -81,7 +84,7 @@ module UniMIDI
               device = all.find { |d| d.id == selection }
             end
           end
-          device.open(&block)
+          device.open(&block) unless device.enabled?
         end
         
         # returns the first device for this class
@@ -159,7 +162,7 @@ module UniMIDI
         end
         
         def use_device(device, &block)
-          device.open(&block)
+          device.open(&block) unless device.enabled?
           device         
         end
 
