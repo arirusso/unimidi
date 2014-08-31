@@ -3,10 +3,10 @@
 dir = File.dirname(File.expand_path(__FILE__))
 $LOAD_PATH.unshift dir + '/../lib'
 
-require 'unimidi'
+require "unimidi"
 
 sysex_msg = [0xF0, 0x41, 0x10, 0x42, 0x12, 0x40, 0x00, 0x7F, 0x00, 0x41, 0xF7]
 
-UniMIDI::Output.gets do |output|
-  output.open { |output| output.puts(sysex_msg) }
-end
+output = UniMIDI::Output.gets
+
+output.puts(sysex_msg)

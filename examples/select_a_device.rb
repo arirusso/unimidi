@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 $:.unshift File.join( File.dirname( __FILE__ ), '../lib')
 
-require 'unimidi'
+require "unimidi"
 
 #
 # This is an example that explains how to select an output.
