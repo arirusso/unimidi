@@ -3,7 +3,6 @@
 #
 # (c)2010-2014 Ari Russo and licensed under the Apache 2.0 License
 #
-#
 
 # modules
 require "unimidi/command"
