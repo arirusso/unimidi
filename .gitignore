@@ -1,8 +1,0 @@
-.idea
-.idea/*/**
-.loadpath
-.project
-*.gem
-*.gemspec
-*.gemspec.rb
-unimidi-gemspec.rb
