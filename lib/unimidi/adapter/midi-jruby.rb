@@ -11,11 +11,11 @@ module UniMIDI
         extend self
 
         def inputs
-          ::MIDIJRuby::Device.all_by_type[:inputs]
+          ::MIDIJRuby::Device.all_by_type[:input]
         end
 
         def outputs
-          ::MIDIJRuby::Device.all_by_type[:outputs]
+          ::MIDIJRuby::Device.all_by_type[:output]
         end
 
       end
