@@ -9,14 +9,14 @@ Also see [MicroMIDI](http://github.com/arirusso/micromidi) which builds a full M
 * Supports Linux, JRuby, OSX, Windows and Cygwin
 * No compilation required
 * Both input and output to and from multiple devices concurrently
-* Agnostically handle different MIDI and SysEx Message types
+* Generalized handling of different MIDI and SysEx Message types
 * (OSX Only) Use IAC to internally route MIDI to other programs
 
 ### Requirements
 
 Using Ruby 1.9.2 or JRuby 1.6.1 (or newer) is strongly recommended.  JRuby should be run in 1.9 mode where applicable
 
-UniMIDI uses one of the following libraries, depending on which platform you're using it on.  The necessary library should install automatically with the unimidi gem.  In some uncommon cases, they will all install
+UniMIDI uses one of the following libraries, depending on which platform you're using it on.  The necessary library should install automatically with the unimidi gem. 
 
 Platform
 
