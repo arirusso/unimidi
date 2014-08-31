@@ -19,6 +19,6 @@ module UniMIDI
 
   VERSION = "0.4.1"
 
-  Platform.init
+  Platform.bootstrap
 
 end
