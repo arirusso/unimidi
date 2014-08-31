@@ -84,4 +84,4 @@ See below for additional notes on testing with JRuby
 
 Apache 2.0, See the file LICENSE
 
-Copyright (c) 2010-2013 Ari Russo  
+Copyright (c) 2010-2014 Ari Russo  
