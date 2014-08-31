@@ -1,23 +1,25 @@
-require 'midi-jruby'
+require "midi-jruby"
 
 module UniMIDI
 
-  module MIDIJRubyAdapter
-    
-    class Input < CongruousApiInput
-      defer_to MIDIJRuby::Input
-      device_class MIDIJRuby::Device
-    end
+  module Adapter
 
-    class Output < CongruousApiOutput
-      defer_to MIDIJRuby::Output
-      device_class MIDIJRuby::Device
-    end
-    
-    class Device < CongruousApiDevice
-      defer_to MIDIJRuby::Device
-      input_class Input
-      output_class Output
+    module MIDIJRuby
+
+      module Loader
+
+        extend self
+
+        def inputs
+          ::MIDIJRuby::Device.all_by_type[:inputs]
+        end
+
+        def outputs
+          ::MIDIJRuby::Device.all_by_type[:outputs]
+        end
+
+      end
+
     end
 
   end

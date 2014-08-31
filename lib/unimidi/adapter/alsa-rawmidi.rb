@@ -1,25 +1,27 @@
-require 'alsa-rawmidi'
+require "alsa-rawmidi"
 
 module UniMIDI
 
-  module AlsaRawMIDIAdapter
-    
-    class Input < CongruousApiInput
-      defer_to AlsaRawMIDI::Input
-      device_class AlsaRawMIDI::Device
+  module Adapter
+
+    module AlsaRawMIDI
+
+      module Loader
+
+        extend self
+
+        def inputs
+          ::AlsaRawMIDI::Device.all_by_type[:inputs]
+        end
+
+        def outputs
+          ::AlsaRawMIDI::Device.all_by_type[:outputs]
+        end
+
+      end
+
     end
 
-    class Output < CongruousApiOutput
-      defer_to AlsaRawMIDI::Output
-      device_class AlsaRawMIDI::Device
-    end
-    
-    class Device < CongruousApiDevice
-      defer_to AlsaRawMIDI::Device
-      input_class Input
-      output_class Output
-    end
-    
   end
 
 end

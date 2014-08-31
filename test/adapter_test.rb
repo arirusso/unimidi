@@ -1,6 +1,6 @@
-require 'helper'
+require "helper"
 
-class UniMIDI::CongruousApiAdapterTest < UniMIDI::TestCase
+class UniMIDI::AdapterTest < UniMIDI::TestCase
 
   context "Adapter" do
 

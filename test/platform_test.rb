@@ -6,7 +6,6 @@ class UniMIDI::PlatformTest < UniMIDI::TestCase
     device_class ||= mod::Device
     input_class ||= mod::Input
     output_class ||= mod::Output
-    assert_equal(adapter, UniMIDI::Platform.instance.interface)
     assert_not_same(input_class, UniMIDI::Input)
     assert_not_same(output_class, UniMIDI::Output)
     assert_not_same(device_class, UniMIDI::Device)
@@ -21,25 +20,25 @@ class UniMIDI::PlatformTest < UniMIDI::TestCase
 
     should "recognize java" do
       if RUBY_PLATFORM.include?("java")
-        platform_test(MIDIJRubyAdapter, MIDIJRuby)
+        platform_test(Adapter::MIDIJRuby, ::MIDIJRuby)
       end
     end
 
     should "recognize linux" do
       if RUBY_PLATFORM.include?("linux")
-        platform_test(AlsaRawMIDIAdapter, AlsaRawMIDI)
+        platform_test(Adapter::AlsaRawMIDI, ::AlsaRawMIDI)
       end  
     end
 
     should "recognize osx" do
       if RUBY_PLATFORM.include?("darwin")
-        platform_test(CoreMIDIAdapter, CoreMIDI, CoreMIDI::Endpoint, CoreMIDI::Source, CoreMIDI::Destination)
+        platform_test(Adapter::CoreMIDI, ::CoreMIDI, ::CoreMIDI::Endpoint, ::CoreMIDI::Source, ::CoreMIDI::Destination)
       end  
     end
 
     should "recognize windows" do
       if RUBY_PLATFORM.include?("mingw")
-        platform_test(MIDIWinMMAdapter, MIDIWinMM)
+        platform_test(Adapter::MIDIWinMM, ::MIDIWinMM)
       end
     end  
 

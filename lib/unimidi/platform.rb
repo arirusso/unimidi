@@ -1,12 +1,10 @@
 module UniMIDI
   
-  class Platform
+  module Platform
 
-    include Singleton
-
-    attr_reader :interface
+    extend self
     
-    def initialize
+    def init
       lib = case RUBY_PLATFORM
         when /darwin/ then "ffi-coremidi"
         when /java/ then "midi-jruby"
@@ -14,12 +12,13 @@ module UniMIDI
         when /mingw/ then "midi-winmm"
       end
       require("unimidi/adapter/#{lib}")
-      @interface = case RUBY_PLATFORM
-        when /darwin/ then CoreMIDIAdapter
-        when /java/ then MIDIJRubyAdapter
-        when /linux/ then AlsaRawMIDIAdapter
-        when /mingw/ then MIDIWinMMAdapter
+      interface = case RUBY_PLATFORM
+        when /darwin/ then Adapter::CoreMIDI
+        when /java/ then Adapter::MIDIJRuby
+        when /linux/ then Adapter::AlsaRawMIDI
+        when /mingw/ then Adapter::MIDIWinMMAdapter
       end
+      Loader.use(interface::Loader)
     end
 
   end

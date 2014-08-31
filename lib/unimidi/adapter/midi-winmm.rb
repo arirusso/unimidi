@@ -1,23 +1,25 @@
-require 'midi-winmm'
+require "midi-winmm"
 
 module UniMIDI
 
-  module MIDIWinMMAdapter
-    
-    class Input < CongruousApiInput
-      defer_to MIDIWinMM::Input
-      device_class MIDIWinMM::Device
-    end
+  module Adapter
 
-    class Output < CongruousApiOutput
-      defer_to MIDIWinMM::Output
-      device_class MIDIWinMM::Device
-    end
-    
-    class Device < CongruousApiDevice
-      defer_to MIDIWinMM::Device
-      input_class Input
-      output_class Output
+    module MIDIWinMM
+
+      module Loader
+
+        extend self
+
+        def inputs
+          ::MIDIWinMM::Device.all_by_type[:inputs]
+        end
+
+        def outputs
+          ::MIDIWinMM::Device.all_by_type[:outputs]
+        end
+
+      end
+
     end
 
   end

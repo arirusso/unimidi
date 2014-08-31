@@ -1,4 +1,4 @@
-require 'helper'
+require "helper"
 
 class UniMIDI::ClassMethodsTest < UniMIDI::TestCase
 
@@ -78,10 +78,10 @@ class UniMIDI::ClassMethodsTest < UniMIDI::TestCase
 
         should "return an enabled input" do
           sleep(1)
-          i = Input.use(:first)
-          assert_equal(true, i.enabled?) 
-          assert_equal(Input.first, i)
-          assert_equal(Input.all.first, i)       
+          input = Input.use(:first)
+          assert_equal(true, input.enabled?) 
+          assert_equal(Input.first, input)
+          assert_equal(Input.all.first, input)       
         end
 
       end
@@ -90,8 +90,7 @@ class UniMIDI::ClassMethodsTest < UniMIDI::TestCase
 
     context "#all" do
       should "return all devices" do
-        i = Input.all
-        assert_equal(Device.all_by_type[:input], Input.all)
+        assert_equal(Loader.devices(:type => :input), Input.all)
       end
     end
 
