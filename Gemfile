@@ -8,11 +8,7 @@ group :test do
   gem "shoulda-context"
 end
 
-lib = case RUBY_PLATFORM
-  when /darwin/ then "ffi-coremidi"
-  when /java/ then "midi-jruby"
-  when /linux/ then "alsa-rawmidi"
-  when /mingw/ then "midi-winmm"
-end
-
-gem lib
+gem "ffi-coremidi" # osx
+gem "midi-jruby" # jruby
+gem "alsa-rawmidi" # linux
+gem "midi-winmm" # windows
