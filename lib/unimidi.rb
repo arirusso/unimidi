@@ -1,5 +1,5 @@
 #
-# A realtime MIDI interface for Ruby
+# Realtime MIDI IO for Ruby
 #
 # (c)2010-2014 Ari Russo and licensed under the Apache 2.0 License
 #
