@@ -1,18 +1,25 @@
 module UniMIDI
 
+  # Common logic that is shared by both Input and Output devices
   module Device
 
+    # Methods that are shared by both Input and Output classes
     module ClassMethods
 
       include Enumerable
 
+      # Iterate over all devices of this type
       def each(&block)
         all.each { |device| yield(device) }
       end
 
       # Prints ids and names of each device to the console
       def list
-        all.each { |device| puts(device.pretty_name) }
+        all.map do |device| 
+          name = device.pretty_name
+          puts(name)
+          name
+        end
       end
 
       # Shortcut to get a device by its name
@@ -73,6 +80,7 @@ module UniMIDI
 
     end
 
+    # Methods that are shared by both Input and Output instances
     module InstanceMethods
 
       def initialize(device_obj)        
