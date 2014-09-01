@@ -90,7 +90,7 @@ class UniMIDI::ClassMethodsTest < UniMIDI::TestCase
 
     context "#all" do
       should "return all devices" do
-        assert_equal(Loader.devices(:type => :input), Input.all)
+        assert_equal(Loader.devices(:direction => :input), Input.all)
       end
     end
 
