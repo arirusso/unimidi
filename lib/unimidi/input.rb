@@ -9,7 +9,7 @@ module UniMIDI
     # All MIDI input devices -- used to populate the class
     # @return [Array<Input>]
     def self.all
-      Loader.devices(:type => :input)
+      Loader.devices(:direction => :input)
     end
 
     # The device buffer

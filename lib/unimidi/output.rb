@@ -9,7 +9,7 @@ module UniMIDI
     # All MIDI output devices -- used to populate the class
     # @return [Array<Output>]
     def self.all
-      Loader.devices(:type => :output)
+      Loader.devices(:direction => :output)
     end
 
     # Sends a message to the output. 
