@@ -1,6 +1,6 @@
 module UniMIDI
   
-  # Utility module for converting between different data formats
+  # Utility for converting between different data formats
   module TypeConversion
 
     extend self
