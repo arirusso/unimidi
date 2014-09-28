@@ -5,7 +5,7 @@ module UniMIDI
   module Adapter
 
     # Load underlying devices using the midi-winmm gem
-    module MIDIWinMMAdapter
+    module MIDIWinMM
 
       module Loader
 

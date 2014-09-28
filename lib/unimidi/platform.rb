@@ -18,7 +18,7 @@ module UniMIDI
         when /darwin/ then Adapter::CoreMIDI
         when /java/ then Adapter::MIDIJRuby
         when /linux/ then Adapter::AlsaRawMIDI
-        when /mingw/ then Adapter::MIDIWinMMAdapter
+        when /mingw/ then Adapter::MIDIWinMM
       end
       Loader.use(interface::Loader)
     end
