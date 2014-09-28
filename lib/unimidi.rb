@@ -17,7 +17,7 @@ require "unimidi/output"
 
 module UniMIDI
 
-  VERSION = "0.4.3"
+  VERSION = "0.4.4"
 
   Platform.bootstrap
 
