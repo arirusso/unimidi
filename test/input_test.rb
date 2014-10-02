@@ -20,12 +20,12 @@ class UniMIDI::InputBufferTest < Test::Unit::TestCase
 
         @messages.each do |msg|
 
-          $>.puts "sending: " + msg.inspect
+          p "sending: #{msg}"
           @output.puts(msg)
           @bytes += msg 
           sleep(0.5)
           buffer = @input.buffer.map { |m| m[:data] }.flatten
-          $>.puts "received: " + buffer.to_s
+          p "received: #{buffer}"
           assert_equal(@bytes, buffer)
 
         end

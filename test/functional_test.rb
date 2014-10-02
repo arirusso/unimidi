@@ -31,13 +31,13 @@ class UniMIDI::FunctionalTest < Test::Unit::TestCase
 
           @messages.each do |msg|
 
-            $>.puts "sending: " + msg.inspect
+            p "sending: #{msg}"
 
             @output.puts(msg)
             sleep(1)
             received = @input.gets.map { |m| m[:data] }.flatten
 
-            $>.puts "received: " + received.inspect
+            p "received: #{received}"
 
             assert_equal(@messages_arr.slice(@pointer, received.length), received)
             @pointer += received.length
@@ -60,12 +60,12 @@ class UniMIDI::FunctionalTest < Test::Unit::TestCase
 
           @messages.each do |msg|
 
-            $>.puts "sending: " + msg.inspect
+            p "sending: #{msg}"
 
             @output.puts(msg)
             sleep(1)
             received = @input.gets_bytestr.map { |m| m[:data] }.flatten.join
-            $>.puts "received: " + received.inspect
+            p "received: #{received}"
 
             assert_equal(@messages_str.slice(@pointer, received.length), received)
             @pointer += received.length
@@ -90,13 +90,13 @@ class UniMIDI::FunctionalTest < Test::Unit::TestCase
 
           @messages.each do |msg|
 
-            $>.puts "sending: " + msg.inspect
+            p "sending: #{msg}"
 
             @output.puts(msg)
             sleep(1)
             received = @input.gets.map { |m| m[:data] }.flatten
 
-            $>.puts "received: " + received.inspect
+            p "received: #{received}"
 
             assert_equal(@messages_arr.slice(@pointer, received.length), received)
             @pointer += received.length
