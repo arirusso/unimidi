@@ -1,29 +1,25 @@
 require "helper"
 
-class UniMIDI::ClassMethodsTest < UniMIDI::TestCase
+class UniMIDI::ClassMethodsTest < Test::Unit::TestCase
 
   context "ClassMethods" do
-
-    setup do
-      TestDeviceHelper.setup
-    end
 
     context "#first" do
 
       context "no block given" do
         should "return first input" do
-          i = Input.first
-          assert_equal(Input.all.first, i)
+          i = UniMIDI::Input.first
+          assert_equal(UniMIDI::Input.all.first, i)
         end
       end
 
       context "block given" do
         should "pass and return first input" do
           sleep(1)
-          i = Input.first do |i|
+          i = UniMIDI::Input.first do |i|
             assert_equal(true, i.enabled?)
           end
-          assert_equal(Input.all.first, i)
+          assert_equal(UniMIDI::Input.all.first, i)
         end
 
       end
@@ -33,18 +29,18 @@ class UniMIDI::ClassMethodsTest < UniMIDI::TestCase
 
       context "no block given" do
         should "return last input" do
-          i = Input.last
-          assert_equal(Input.all.last, i)    
+          i = UniMIDI::Input.last
+          assert_equal(UniMIDI::Input.all.last, i)    
         end
       end
 
       context "block given" do
         should "pass and return last input" do
           sleep(1)
-          i = Input.last do |i|
+          i = UniMIDI::Input.last do |i|
             assert_equal(true, i.enabled?)     
           end
-          assert_equal(Input.all.last, i)     
+          assert_equal(UniMIDI::Input.all.last, i)     
         end
 
       end
@@ -53,9 +49,9 @@ class UniMIDI::ClassMethodsTest < UniMIDI::TestCase
     context "#[]" do
 
       should "return correct input" do
-        i = Input[0]
-        assert_equal(Input.first, i)
-        assert_equal(Input.all.first, i)
+        i = UniMIDI::Input[0]
+        assert_equal(UniMIDI::Input.first, i)
+        assert_equal(UniMIDI::Input.all.first, i)
       end
 
     end
@@ -65,11 +61,11 @@ class UniMIDI::ClassMethodsTest < UniMIDI::TestCase
       context "block given" do
         should "return and enable an input" do
           sleep(1)
-          i = Input.use(0) do |i|
+          i = UniMIDI::Input.use(0) do |i|
             assert_equal(true, i.enabled?) 
           end
-          assert_equal(Input.first, i)
-          assert_equal(Input.all.first, i)    
+          assert_equal(UniMIDI::Input.first, i)
+          assert_equal(UniMIDI::Input.all.first, i)    
         end
 
       end
@@ -78,10 +74,10 @@ class UniMIDI::ClassMethodsTest < UniMIDI::TestCase
 
         should "return an enabled input" do
           sleep(1)
-          input = Input.use(:first)
+          input = UniMIDI::Input.use(:first)
           assert_equal(true, input.enabled?) 
-          assert_equal(Input.first, input)
-          assert_equal(Input.all.first, input)       
+          assert_equal(UniMIDI::Input.first, input)
+          assert_equal(UniMIDI::Input.all.first, input)       
         end
 
       end
@@ -90,7 +86,7 @@ class UniMIDI::ClassMethodsTest < UniMIDI::TestCase
 
     context "#all" do
       should "return all devices" do
-        assert_equal(Loader.devices(:direction => :input), Input.all)
+        assert_equal(UniMIDI::Loader.devices(:direction => :input), UniMIDI::Input.all)
       end
     end
 

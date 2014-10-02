@@ -1,6 +1,6 @@
 require 'helper'
 
-class UniMIDI::PlatformTest < UniMIDI::TestCase
+class UniMIDI::PlatformTest < Test::Unit::TestCase
 
   def platform_test(adapter, mod, device_class = nil, input_class = nil, output_class = nil)
     device_class ||= mod::Device
@@ -20,25 +20,25 @@ class UniMIDI::PlatformTest < UniMIDI::TestCase
 
     should "recognize java" do
       if RUBY_PLATFORM.include?("java")
-        platform_test(Adapter::MIDIJRuby, ::MIDIJRuby)
+        platform_test(UniMIDI::Adapter::MIDIJRuby, ::MIDIJRuby)
       end
     end
 
     should "recognize linux" do
       if RUBY_PLATFORM.include?("linux")
-        platform_test(Adapter::AlsaRawMIDI, ::AlsaRawMIDI)
+        platform_test(UniMIDI::Adapter::AlsaRawMIDI, ::AlsaRawMIDI)
       end  
     end
 
     should "recognize osx" do
       if RUBY_PLATFORM.include?("darwin")
-        platform_test(Adapter::CoreMIDI, ::CoreMIDI, ::CoreMIDI::Endpoint, ::CoreMIDI::Source, ::CoreMIDI::Destination)
+        platform_test(UniMIDI::Adapter::CoreMIDI, ::CoreMIDI, ::CoreMIDI::Endpoint, ::CoreMIDI::Source, ::CoreMIDI::Destination)
       end  
     end
 
     should "recognize windows" do
       if RUBY_PLATFORM.include?("mingw")
-        platform_test(Adapter::MIDIWinMM, ::MIDIWinMM)
+        platform_test(UniMIDI::Adapter::MIDIWinMM, ::MIDIWinMM)
       end
     end  
 

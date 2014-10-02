@@ -1,13 +1,12 @@
 require "helper"
 
-class UniMIDI::FunctionalTest < UniMIDI::TestCase
+class UniMIDI::FunctionalTest < Test::Unit::TestCase
 
   # ** these tests assume that TestOutput is connected to TestInput
   context "UniMIDI" do
 
     setup do
       sleep(1)
-      TestDeviceHelper.setup
     end
 
     context "full IO" do
@@ -15,15 +14,15 @@ class UniMIDI::FunctionalTest < UniMIDI::TestCase
       context "using Arrays" do
 
         setup do
-          @messages = VariousMIDIMessages
+          @messages = TestHelper.numeric_messages
           @messages_arr = @messages.inject { |a,b| a+b }.flatten
           @received_arr = []
           @pointer = 0
         end
 
         should "do IO" do
-          TestDeviceHelper.devices[:output].open do |output|
-            TestDeviceHelper.devices[:input].open do |input|
+          TestHelper.devices[:output].open do |output|
+            TestHelper.devices[:input].open do |input|
 
               input.buffer.clear
 
@@ -51,15 +50,15 @@ class UniMIDI::FunctionalTest < UniMIDI::TestCase
       context "using byte Strings" do
 
         setup do
-          @messages = VariousMIDIByteStrMessages
+          @messages = TestHelper.string_messages
           @messages_str = @messages.join
           @received_str = ""
           @pointer = 0
         end
 
         should "do IO" do
-          TestDeviceHelper.devices[:output].open do |output|
-            TestDeviceHelper.devices[:input].open do |input|
+          TestHelper.devices[:output].open do |output|
+            TestHelper.devices[:input].open do |input|
 
               @messages.each do |msg|
 
@@ -87,15 +86,15 @@ class UniMIDI::FunctionalTest < UniMIDI::TestCase
       context "using MIDIMessages" do
 
         setup do
-          @messages = VariousMIDIObjects
+          @messages = TestHelper.message_objects
           @messages_arr = @messages.map { |m| m.to_bytes }.flatten
           @received_arr = []
           @pointer = 0
         end
 
         should "do IO" do
-          TestDeviceHelper.devices[:output].open do |output|
-            TestDeviceHelper.devices[:input].open do |input|
+          TestHelper.devices[:output].open do |output|
+            TestHelper.devices[:input].open do |input|
 
               #input.buffer.clear
 

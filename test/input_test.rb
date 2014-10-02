@@ -1,25 +1,21 @@
 require 'helper'
 
-class UniMIDI::InputBufferTest < UniMIDI::TestCase
+class UniMIDI::InputBufferTest < Test::Unit::TestCase
 
   context "Input" do
-
-    setup do
-      TestDeviceHelper.setup
-    end
 
     context "#buffer" do
 
       setup do
         sleep(1) 
-        @messages = VariousMIDIMessages
+        @messages = TestHelper.numeric_messages
         @bytes = []
       end
 
       should "add received messages to the buffer" do
 
-        TestDeviceHelper.devices[:output].open do |output|
-          TestDeviceHelper.devices[:input].open do |input|
+        TestHelper.devices[:output].open do |output|
+          TestHelper.devices[:input].open do |input|
 
             input.buffer.clear
 

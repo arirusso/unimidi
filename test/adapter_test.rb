@@ -1,22 +1,18 @@
 require "helper"
 
-class UniMIDI::AdapterTest < UniMIDI::TestCase
+class UniMIDI::AdapterTest < Test::Unit::TestCase
 
   context "Adapter" do
-
-    setup do
-      TestDeviceHelper.setup
-    end
 
     context "Device#type" do
 
       should "be an input" do
-        input = TestDeviceHelper.devices[:input]
+        input = TestHelper.devices[:input]
         assert_equal(:input, input.type)
       end
 
       should "be an output" do
-        output = TestDeviceHelper.devices[:output]
+        output = TestHelper.devices[:output]
         assert_equal(:output, output.type)  
       end
 
@@ -25,11 +21,11 @@ class UniMIDI::AdapterTest < UniMIDI::TestCase
     context "Device.count" do
 
       setup do
-        @inputs = Input.all
+        @inputs = UniMIDI::Input.all
       end
 
       should "count all of the inputs" do
-        assert_equal @inputs.count, Input.count
+        assert_equal @inputs.count, UniMIDI::Input.count
       end
 
     end
@@ -37,12 +33,12 @@ class UniMIDI::AdapterTest < UniMIDI::TestCase
     context "Device.find_by_name" do
 
       setup do
-        index = rand(0..(Output.count-1))
-        @output = Output.all[index]
+        index = rand(0..(UniMIDI::Output.count-1))
+        @output = UniMIDI::Output.all[index]
       end
 
       should "select the correct input" do
-        result = Output.find_by_name(@output.name)
+        result = UniMIDI::Output.find_by_name(@output.name)
         assert_equal @output, result
       end
 
@@ -51,17 +47,17 @@ class UniMIDI::AdapterTest < UniMIDI::TestCase
     context "Device.first" do
 
       setup do
-        @output = Output.all.first
+        @output = UniMIDI::Output.all.first
       end
 
       should "open the output" do
         @output.expects(:open)
-        output = Output.first
+        output = UniMIDI::Output.first
         @output.unstub(:open)
       end
 
       should "return the correct output" do
-        output = Output.first
+        output = UniMIDI::Output.first
         assert_equal @output, output
       end
     end
