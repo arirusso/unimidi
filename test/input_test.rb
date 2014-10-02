@@ -7,34 +7,31 @@ class UniMIDI::InputBufferTest < Test::Unit::TestCase
     context "#buffer" do
 
       setup do
-        sleep(1) 
+        sleep(1)
+        @input = TestHelper.devices[:input]
+        @output = TestHelper.devices[:output]
         @messages = TestHelper.numeric_messages
         @bytes = []
       end
 
       should "add received messages to the buffer" do
 
-        TestHelper.devices[:output].open do |output|
-          TestHelper.devices[:input].open do |input|
+        @input.buffer.clear
 
-            input.buffer.clear
+        @messages.each do |msg|
 
-            @messages.each do |msg|
+          $>.puts "sending: " + msg.inspect
+          @output.puts(msg)
+          @bytes += msg 
+          sleep(0.5)
+          buffer = @input.buffer.map { |m| m[:data] }.flatten
+          $>.puts "received: " + buffer.to_s
+          assert_equal(@bytes, buffer)
 
-              $>.puts "sending: " + msg.inspect
-              output.puts(msg)
-              @bytes += msg 
-              sleep(0.5)
-              buffer = input.buffer.map { |m| m[:data] }.flatten
-              $>.puts "received: " + buffer.to_s
-              assert_equal(@bytes, buffer)
-
-            end
-
-            assert_equal(@bytes.length, input.buffer.map { |m| m[:data] }.flatten.length)
-
-          end
         end
+
+        assert_equal(@bytes.length, @input.buffer.map { |m| m[:data] }.flatten.length)
+
       end
 
     end

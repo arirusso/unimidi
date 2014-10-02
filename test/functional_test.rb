@@ -11,6 +11,11 @@ class UniMIDI::FunctionalTest < Test::Unit::TestCase
 
     context "full IO" do
 
+      setup do
+        @input = TestHelper.devices[:input]
+        @output = TestHelper.devices[:output]
+      end
+
       context "using Arrays" do
 
         setup do
@@ -21,29 +26,24 @@ class UniMIDI::FunctionalTest < Test::Unit::TestCase
         end
 
         should "do IO" do
-          TestHelper.devices[:output].open do |output|
-            TestHelper.devices[:input].open do |input|
 
-              input.buffer.clear
+          @input.buffer.clear
 
-              @messages.each do |msg|
+          @messages.each do |msg|
 
-                $>.puts "sending: " + msg.inspect
+            $>.puts "sending: " + msg.inspect
 
-                output.puts(msg)
-                sleep(1)
-                received = input.gets.map { |m| m[:data] }.flatten
+            @output.puts(msg)
+            sleep(1)
+            received = @input.gets.map { |m| m[:data] }.flatten
 
-                $>.puts "received: " + received.inspect
+            $>.puts "received: " + received.inspect
 
-                assert_equal(@messages_arr.slice(@pointer, received.length), received)
-                @pointer += received.length
-                @received_arr += received
-              end
-              assert_equal(@messages_arr.length, @received_arr.length)
-            end
+            assert_equal(@messages_arr.slice(@pointer, received.length), received)
+            @pointer += received.length
+            @received_arr += received
           end
-
+          assert_equal(@messages_arr.length, @received_arr.length)
         end
       end
 
@@ -57,27 +57,21 @@ class UniMIDI::FunctionalTest < Test::Unit::TestCase
         end
 
         should "do IO" do
-          TestHelper.devices[:output].open do |output|
-            TestHelper.devices[:input].open do |input|
 
-              @messages.each do |msg|
+          @messages.each do |msg|
 
-                $>.puts "sending: " + msg.inspect
+            $>.puts "sending: " + msg.inspect
 
-                output.puts(msg)
-                sleep(1)
-                received = input.gets_bytestr.map { |m| m[:data] }.flatten.join
-                $>.puts "received: " + received.inspect
+            @output.puts(msg)
+            sleep(1)
+            received = @input.gets_bytestr.map { |m| m[:data] }.flatten.join
+            $>.puts "received: " + received.inspect
 
-                assert_equal(@messages_str.slice(@pointer, received.length), received)
-                @pointer += received.length
-                @received_str += received
-              end
-              assert_equal(@messages_str, @received_str)
-
-            end
+            assert_equal(@messages_str.slice(@pointer, received.length), received)
+            @pointer += received.length
+            @received_str += received
           end
-
+          assert_equal(@messages_str, @received_str)
 
         end
 
@@ -93,29 +87,23 @@ class UniMIDI::FunctionalTest < Test::Unit::TestCase
         end
 
         should "do IO" do
-          TestHelper.devices[:output].open do |output|
-            TestHelper.devices[:input].open do |input|
 
-              #input.buffer.clear
+          @messages.each do |msg|
 
-              @messages.each do |msg|
+            $>.puts "sending: " + msg.inspect
 
-                $>.puts "sending: " + msg.inspect
+            @output.puts(msg)
+            sleep(1)
+            received = @input.gets.map { |m| m[:data] }.flatten
 
-                output.puts(msg)
-                sleep(1)
-                received = input.gets.map { |m| m[:data] }.flatten
+            $>.puts "received: " + received.inspect
 
-                $>.puts "received: " + received.inspect
-
-                assert_equal(@messages_arr.slice(@pointer, received.length), received)
-                @pointer += received.length
-                @received_arr += received
-              end
-              assert_equal(@messages_arr.length, @received_arr.length)
-
-            end
+            assert_equal(@messages_arr.slice(@pointer, received.length), received)
+            @pointer += received.length
+            @received_arr += received
           end
+          assert_equal(@messages_arr.length, @received_arr.length)
+
         end
 
       end
