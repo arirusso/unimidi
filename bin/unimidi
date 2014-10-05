@@ -6,7 +6,7 @@ require "unimidi"
 
 def help_exit(argv = nil)
   if argv == nil
-    puts "No command specified"
+    puts "No subcommand specified"
   else
     puts "Subcommmand #{argv.to_s} not found"
   end
