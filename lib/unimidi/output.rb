@@ -26,7 +26,7 @@ module UniMIDI
     def puts(*messages)
       message = messages.first
       case message
-      when Array then message.each { |message| puts(*message) }
+      when Array then messages.each { |array| puts(*array.flatten) }
       when Fixnum then puts_bytes(*messages)
       when String then puts_s(*messages)
       else
