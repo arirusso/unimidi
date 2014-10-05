@@ -4,8 +4,20 @@ $LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 
 require "unimidi"
 
-opts = ARGV.length > 1 ? ARGV.slice(1, ARGV.length-1) : {} 
-  
-raise "No command specified" if ARGV.first.nil? 
- 
+def help_exit(argv = nil)
+  if argv == nil
+    puts "No command specified"
+  else
+    puts "Subcommmand #{argv.to_s} not found"
+  end
+  puts "Usage: unimidi list"
+  puts "  You can also pass `l` or `list_devices`, but they mean the same thing"
+  exit 1
+end
+
+opts = ARGV.length > 1 ? ARGV.slice(1, ARGV.length-1) : {}
+
+help_exit if ARGV.first.nil?
+
+
 UniMIDI::Command.exec(ARGV.first.to_sym, opts)

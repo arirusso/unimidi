@@ -17,7 +17,7 @@ module UniMIDI
         Output.list
         true
       else
-        raise "Command #{command.to_s} not found"
+        help_exit(command)
       end   
     end
 
