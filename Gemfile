@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
 group :test do
+  gem "minitest", "4.7.5"
   gem "mocha"
   gem "rake"
   gem "shoulda-context"
