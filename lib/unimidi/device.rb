@@ -105,21 +105,16 @@ module UniMIDI
         populate_from_device
       end
 
-      # Is this device ready for io?
-      # @return [Boolean]
-      def enabled?
-        @enabled = true if @device.enabled # keep the adapter in sync
-        @enabled
-      end
-
       # Enable the device for use
       # Params are passed to the underlying device object
       # Can be passed a block to which the device will be passed in as the yieldparam
       # @param [*Object] args
       # @return [Input, Output] self
       def open(*args, &block)
-        @device.open(*args) unless enabled?
-        @enabled = true
+        unless @enabled
+          @device.open(*args)
+          @enabled = true
+        end
         if block_given?
           begin
             yield(self)
@@ -145,16 +140,23 @@ module UniMIDI
       # @param [*Object] args
       # @return [Boolean]
       def close(*args)
-        @device.close(*args)
-        true
+        if @enabled
+          @device.close(*args)
+          @enabled = false
+          true
+        else
+          false
+        end
       end
 
       # Add attributes for the device instance
       # :direction, :id, :name
       def self.included(base)
         base.send(:attr_reader, :direction)
+        base.send(:attr_reader, :enabled)
         base.send(:attr_reader, :id)
         base.send(:attr_reader, :name)
+        base.send(:alias_method, :enabled?, :enabled)
         base.send(:alias_method, :type, :direction)
       end
 
