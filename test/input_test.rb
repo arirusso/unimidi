@@ -1,6 +1,6 @@
 require 'helper'
 
-class UniMIDI::InputBufferTest < Test::Unit::TestCase
+class UniMIDI::InputTest < Test::Unit::TestCase
 
   context "Input" do
 
@@ -8,22 +8,27 @@ class UniMIDI::InputBufferTest < Test::Unit::TestCase
 
       setup do
         sleep(1)
-        @input = TestHelper.devices[:input]
-        @output = TestHelper.devices[:output]
+        @input = TestHelper.devices[:input].open
+        @output = TestHelper.devices[:output].open
         @messages = TestHelper.numeric_messages
         @bytes = []
+      end
+
+      teardown do
+        @input.close
+        @output.close
       end
 
       should "add received messages to the buffer" do
 
         @input.buffer.clear
 
-        @messages.each do |msg|
+        @messages.each do |message|
 
-          p "sending: #{msg}"
-          @output.puts(msg)
-          @bytes += msg 
-          sleep(0.5)
+          p "sending: #{message}"
+          @output.puts(message)
+          @bytes += message 
+          sleep(1)
           buffer = @input.buffer.map { |m| m[:data] }.flatten
           p "received: #{buffer}"
           assert_equal(@bytes, buffer)
