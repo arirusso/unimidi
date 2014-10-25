@@ -16,7 +16,7 @@ module UniMIDI
       # Prints ids and names of each device to the console
       # @return [Array<String>]
       def list
-        all.map do |device| 
+        all.map do |device|
           name = device.pretty_name
           puts(name)
           name
@@ -34,16 +34,16 @@ module UniMIDI
       # When their input is received, the device is selected and enabled
       def gets(&block)
         device = nil
-        class_name = self.name.split("::").last.downcase
+        direction = get_direction
         puts ""
-        puts "Select a MIDI #{class_name}..."
+        puts "Select a MIDI #{direction}..."
         while device.nil?
           list
           print "> "
           selection = $stdin.gets.chomp
           if selection != ""
             selection = Integer(selection) rescue nil
-            device = all.find { |d| d.id == selection }
+            device = all.find { |d| d.id == selection } unless selection.nil?
           end
         end
         device.open(&block) unless device.enabled?
@@ -71,7 +71,7 @@ module UniMIDI
                 when :last then all.size - 1
                 else index
                 end
-        use_device(all[index], &block) 
+        use_device(all[index], &block)
       end
       alias_method :open, :use
 
@@ -84,12 +84,18 @@ module UniMIDI
 
       private
 
+      # The direction of the device eg "input", "output"
+      # @return [String]
+      def get_direction
+        self.name.split("::").last.downcase
+      end
+
       # Enable the given device
       # @param [Input, Output] device
       # @return [Input, Output]
       def use_device(device, &block)
         device.open(&block) unless device.enabled?
-        device         
+        device
       end
 
     end
@@ -98,7 +104,7 @@ module UniMIDI
     module InstanceMethods
 
       # @param [AlsaRawMIDI::Input, AlsaRawMIDI::Output, CoreMIDI::Destination, CoreMIDI::Source, MIDIJRuby::Input, MIDIJRuby::Output, MIDIWinMM::Input, MIDIWinMM::Output] device
-      def initialize(device)        
+      def initialize(device)
         @device = device
         @enabled = false
 
