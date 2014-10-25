@@ -46,7 +46,7 @@ module UniMIDI
             device = all.find { |d| d.id == selection } unless selection.nil?
           end
         end
-        device.open(&block) unless device.enabled?
+        device.open(&block)
         device
       end
 
