@@ -131,8 +131,8 @@ module UniMIDI
           at_exit do
             close
           end
-          self
         end
+        self
       end
 
       # A human readable display name for this device
