@@ -5,7 +5,8 @@ $LOAD_PATH.unshift dir + "/../lib"
 
 require "unimidi"
 
-# This program prompts the user to select a midi output and sends some arpeggiated chords to it
+# Prompts the user to select a midi output
+# Sends some arpeggiated chords to the output
 
 notes = [36, 40, 43] # C E G
 octaves = 5

@@ -5,14 +5,14 @@ $LOAD_PATH.unshift dir + "/../lib"
 
 require "unimidi"
 
-# This program prompts the user to select a midi input and then sends an inspection of the first 10 messages
-# messages it receives to standard out
+# Prompts the user to select a midi input
+# Sends an inspection of the first 10 messages messages that input receives to standard out
 
 num_messages = 10
 
 # Prompt the user
-input = UniMIDI::Input.gets 
-  
+input = UniMIDI::Input.gets
+
 # using their selection...
 
 puts "send some MIDI to your input now..."
