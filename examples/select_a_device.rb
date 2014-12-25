@@ -52,3 +52,7 @@ output = UniMIDI::Device.all_by_type(:output).first
 
 output.open
 
+# If you don't know the order of the devices, and don't want to select at runtime,
+# you can select a device by name like this
+
+output = UniMIDI::Output.find { |device| device.name.match(/Launchpad/) }.open
