@@ -8,7 +8,7 @@ require "unimidi"
 # It's not really meant to be run.
 #
 
-# The simplest way to select an output is to prompt the user for selection in 
+# The simplest way to select an output is to prompt the user for selection in
 # the Ruby console
 
 output = UniMIDI::Output.gets
@@ -32,12 +32,12 @@ output = UniMIDI::Output.gets
 output = UniMIDI::Output.use(:first)
 output = UniMIDI::Output.use(0)
 
-# or 
+# or
 
 output = UniMIDI::Output.open(:first)
 output = UniMIDI::Output.open(0)
 
-# this also returns an open device 
+# this also returns an open device
 
 # if you want to wait to open the device, you can select it with any of these "finder" methods
 
@@ -52,7 +52,10 @@ output = UniMIDI::Device.all_by_type(:output).first
 
 output.open
 
-# If you don't know the order of the devices, and don't want to select at runtime,
-# you can select a device by name like this
+# Select a device by name
+
+output = UniMIDI::Output.find_by_name("Roland UM-2 (1)").open
+
+# or using regex
 
 output = UniMIDI::Output.find { |device| device.name.match(/Launchpad/) }.open
