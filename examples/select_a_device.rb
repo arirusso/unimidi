@@ -8,12 +8,11 @@ require "unimidi"
 # It's not really meant to be run.
 #
 
-# The simplest way to select an output is to prompt the user for selection in
-# the Ruby console
+# Prompt the user for selection in the console
 
 output = UniMIDI::Output.gets
 
-# the user will see a list that represents their personal MIDI configuration like:
+# The user will see a list that reflects their local MIDI configuration, and be prompted to select a number
 
 # Select a MIDI output
 # 1) IAC Device
@@ -21,13 +20,11 @@ output = UniMIDI::Output.gets
 # 3) Roland UM-2 (2)
 # >
 
-# and be prompted to select a number
+# Once they've selected, the device that corresponds with their selection is returned.
 
-# once they've selected, the device that corresponds with their selection is returned
+# (Note that it's returned open so you don't need to call output.open)
 
-# and it's returned open so you don't need to call output.open ever
-
-# you can also hard code the selection like this
+# Hard-code the selection like this
 
 output = UniMIDI::Output.use(:first)
 output = UniMIDI::Output.use(0)
@@ -37,9 +34,7 @@ output = UniMIDI::Output.use(0)
 output = UniMIDI::Output.open(:first)
 output = UniMIDI::Output.open(0)
 
-# this also returns an open device
-
-# if you want to wait to open the device, you can select it with any of these "finder" methods
+# If you want to wait to open the device, you can select it with any of these "finder" methods
 
 output = UniMIDI::Output.first
 output = UniMIDI::Output[0]
@@ -48,14 +43,14 @@ output = UniMIDI::Output.all.first
 output = UniMIDI::Device.all_by_type(:output)[0]
 output = UniMIDI::Device.all_by_type(:output).first
 
-# but again, you'll need to call open on it before you use it or you'll get an exception
+# You'll need to call open on these before you use it or an exception will be raised
 
 output.open
 
-# Select a device by name
+# It's also possible to select a device by name
 
 output = UniMIDI::Output.find_by_name("Roland UM-2 (1)").open
 
-# or using regex
+# or using regex match
 
 output = UniMIDI::Output.find { |device| device.name.match(/Launchpad/) }.open
