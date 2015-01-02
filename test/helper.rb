@@ -1,7 +1,7 @@
 dir = File.dirname(File.expand_path(__FILE__))
 $LOAD_PATH.unshift dir + '/../lib'
 
-require "test/unit"
+require "minitest/autorun"
 require "mocha/test_unit"
 require "shoulda-context"
 require "unimidi"
@@ -30,7 +30,7 @@ module TestHelper
     until (bytestr = data.slice!(0,2)).eql?("")
       output << bytestr.hex
     end
-    output    	
+    output
   end
 
   class MIDIObj
@@ -40,7 +40,7 @@ module TestHelper
     def to_bytes
       @bytes
     end
-  end 
+  end
 
   def message_objects
     numeric_messages.map { |message| MIDIObj.new(*message) }

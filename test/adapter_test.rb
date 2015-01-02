@@ -1,6 +1,6 @@
 require "helper"
 
-class UniMIDI::AdapterTest < Test::Unit::TestCase
+class UniMIDI::AdapterTest < Minitest::Test
 
   context "Adapter" do
 
@@ -13,7 +13,7 @@ class UniMIDI::AdapterTest < Test::Unit::TestCase
 
       should "be an output" do
         output = TestHelper.devices[:output]
-        assert_equal(:output, output.type)  
+        assert_equal(:output, output.type)
       end
 
     end

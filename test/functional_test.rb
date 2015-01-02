@@ -1,6 +1,6 @@
 require "helper"
 
-class UniMIDI::FunctionalTest < Test::Unit::TestCase
+class UniMIDI::FunctionalTest < Minitest::Test
 
   # ** these tests assume that TestOutput is connected to TestInput
   context "UniMIDI" do

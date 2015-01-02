@@ -1,6 +1,6 @@
 require "helper"
 
-class UniMIDI::ClassMethodsTest < Test::Unit::TestCase
+class UniMIDI::ClassMethodsTest < Minitest::Test
 
   context "ClassMethods" do
 
@@ -30,7 +30,7 @@ class UniMIDI::ClassMethodsTest < Test::Unit::TestCase
       context "no block given" do
         should "return last input" do
           i = UniMIDI::Input.last
-          assert_equal(UniMIDI::Input.all.last, i)    
+          assert_equal(UniMIDI::Input.all.last, i)
         end
       end
 
@@ -38,9 +38,9 @@ class UniMIDI::ClassMethodsTest < Test::Unit::TestCase
         should "pass and return last input" do
           sleep(1)
           i = UniMIDI::Input.last do |i|
-            assert_equal(true, i.enabled?)     
+            assert_equal(true, i.enabled?)
           end
-          assert_equal(UniMIDI::Input.all.last, i)     
+          assert_equal(UniMIDI::Input.all.last, i)
         end
 
       end
@@ -62,10 +62,10 @@ class UniMIDI::ClassMethodsTest < Test::Unit::TestCase
         should "return and enable an input" do
           sleep(1)
           i = UniMIDI::Input.use(0) do |i|
-            assert_equal(true, i.enabled?) 
+            assert_equal(true, i.enabled?)
           end
           assert_equal(UniMIDI::Input.first, i)
-          assert_equal(UniMIDI::Input.all.first, i)    
+          assert_equal(UniMIDI::Input.all.first, i)
         end
 
       end
@@ -75,9 +75,9 @@ class UniMIDI::ClassMethodsTest < Test::Unit::TestCase
         should "return an enabled input" do
           sleep(1)
           input = UniMIDI::Input.use(:first)
-          assert_equal(true, input.enabled?) 
+          assert_equal(true, input.enabled?)
           assert_equal(UniMIDI::Input.first, input)
-          assert_equal(UniMIDI::Input.all.first, input)       
+          assert_equal(UniMIDI::Input.all.first, input)
         end
 
       end

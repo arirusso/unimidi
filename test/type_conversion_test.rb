@@ -1,6 +1,6 @@
 require 'helper'
 
-class UniMIDI::TypeConversionTest < Test::Unit::TestCase
+class UniMIDI::TypeConversionTest < Minitest::Test
 
   context "TypeConversion" do
 

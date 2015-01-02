@@ -1,6 +1,6 @@
 require 'helper'
 
-class UniMIDI::InputTest < Test::Unit::TestCase
+class UniMIDI::InputTest < Minitest::Test
 
   context "Input" do
 
@@ -27,7 +27,7 @@ class UniMIDI::InputTest < Test::Unit::TestCase
 
           p "sending: #{message}"
           @output.puts(message)
-          @bytes += message 
+          @bytes += message
           sleep(1)
           buffer = @input.buffer.map { |m| m[:data] }.flatten
           p "received: #{buffer}"
