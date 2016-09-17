@@ -16,22 +16,24 @@ module UniMIDI
         @device.buffer.clear
       end
 
-      # Gets any messages in the buffer in the same format as Input#gets. This doesn't remove the messages from the
-      # buffer or have any effect on
+      # Gets any messages in the buffer in the same format as Input::StreamReader#gets. This doesn't remove
+      # the messages from the buffer or have any effect on the StreamReader pointer position
       # @param [*Object] args
       # @return [Array<Hash>]
       def gets_buffer(*args)
         @device.buffer
       end
 
-      # Gets any messages in the buffer in the same format as Input#gets_s, without removing them from the buffer
+      # Gets any messages in the buffer in the same format as Input#gets_s. This doesn't remove
+      # the messages from the buffer or have any effect on the StreamReader pointer position
       # @param [*Object] args
       # @return [Array<Hash>]
       def gets_buffer_s(*args)
         @device.buffer.map { |msg| msg[:data] = TypeConversion.numeric_byte_array_to_hex_string(msg[:data]); msg }
       end
 
-      # Gets any messages in the buffer in the same format as Input#gets_data without removing them from the buffer
+      # Gets any messages in the buffer in the same format as Input#gets_data. . This doesn't remove
+      # the messages from the buffer or have any effect on the StreamReader pointer position
       # @param [*Object] args
       # @return [Array<Fixnum>]
       def gets_buffer_data(*args)

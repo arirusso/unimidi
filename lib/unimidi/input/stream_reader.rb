@@ -4,7 +4,9 @@ module UniMIDI
 
     module StreamReader
 
-      # Plucks data from the input buffer and returns it as array of MIDI event hashes as such:
+      # Returns any data in the input buffer that have been received since the last call to a
+      # StreamReader method. If a StreamReader method has not yet been called, all data received
+      # since the program was initialized will be returned
       #
       # The data is returned as array of MIDI event hashes as such:
       #   [
@@ -25,8 +27,10 @@ module UniMIDI
         exit
       end
 
+      # Returns any data in the input buffer that have been received since the last call to a
+      # StreamReader method. If a StreamReader method has not yet been called, all data received
+      # since the program was initialized will be returned
       #
-      # Plucks data from the input buffer and returns it as array of MIDI event hashes.
       # Similar to Input#gets except that the returned message data as string of hex digits eg:
       #   [
       #     { :data => "904060", :timestamp => 904 },
@@ -44,8 +48,11 @@ module UniMIDI
       alias_method :gets_bytestr, :gets_s
       alias_method :gets_hex, :gets_s
 
+      # Returns any data in the input buffer that have been received since the last call to a
+      # StreamReader method. If a StreamReader method has not yet been called, all data received
+      # since the program was initialized will be returned
       #
-      # Plucks data from the input buffer and returns it as an array of data bytes such as
+      # Similar to Input#gets except that the returned message data as an array of data bytes such as
       #   [144, 60, 100, 128, 60, 100, 144, 40, 120]
       #
       # @param [*Object] args
@@ -55,8 +62,11 @@ module UniMIDI
         arr.map { |msg| msg[:data] }.inject(:+)
       end
 
+      # Returns any data in the input buffer that have been received since the last call to a
+      # StreamReader method. If a StreamReader method has not yet been called, all data received
+      # since the program was initialized will be returned
       #
-      # Plucks data from the input buffer and returns it as a string of data such as
+      # Similar to Input#gets except that the returned message data as a string of data such as
       #   "90406080406090447F"
       #
       # @param [*Object] args
