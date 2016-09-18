@@ -4,7 +4,7 @@ class UniMIDI::ClassMethodsTest < Minitest::Test
 
   context "ClassMethods" do
 
-    context "#first" do
+    context ".first" do
 
       context "no block given" do
         should "return first input" do
@@ -25,7 +25,7 @@ class UniMIDI::ClassMethodsTest < Minitest::Test
       end
     end
 
-    context "#last" do
+    context ".last" do
 
       context "no block given" do
         should "return last input" do
@@ -46,7 +46,7 @@ class UniMIDI::ClassMethodsTest < Minitest::Test
       end
     end
 
-    context "#[]" do
+    context ".[]" do
 
       should "return correct input" do
         i = UniMIDI::Input[0]
@@ -56,7 +56,7 @@ class UniMIDI::ClassMethodsTest < Minitest::Test
 
     end
 
-    context "#use" do
+    context ".use" do
 
       context "block given" do
         should "return and enable an input" do
@@ -84,7 +84,7 @@ class UniMIDI::ClassMethodsTest < Minitest::Test
 
     end
 
-    context "#all" do
+    context ".all" do
       should "return all devices" do
         assert_equal(UniMIDI::Loader.devices(:direction => :input), UniMIDI::Input.all)
       end
