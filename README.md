@@ -16,7 +16,7 @@ Also see [MicroMIDI](http://github.com/arirusso/micromidi) which builds a full M
 
 Using Ruby 1.9.2 or JRuby 1.6.1 (or newer) is strongly recommended.  JRuby should be run in 1.9 mode where applicable
 
-UniMIDI uses one of the following libraries, depending on which platform you're using it on.  The necessary library should install automatically with the unimidi gem. 
+UniMIDI uses one of the following libraries, depending on which platform you're using it on.  The necessary library should install automatically with the unimidi gem.
 
 Platform
 
@@ -24,7 +24,7 @@ Platform
 * Linux: [alsa-rawmidi](http://github.com/arirusso/alsa-rawmidi)
 * OSX: [ffi-coremidi](http://github.com/arirusso/ffi-coremidi)
 * Windows/Cygwin: [midi-winmm](http://github.com/arirusso/midi-winmm)
-	
+
 ### Install
 
 If you're using Bundler, add this line to your application's Gemfile:
@@ -34,7 +34,7 @@ If you're using Bundler, add this line to your application's Gemfile:
 Otherwise...
 
 `gem install unimidi`
-	
+
 ### Usage
 
 ##### Blog Posts
@@ -75,13 +75,13 @@ See below for additional notes on testing with JRuby
 ##### Linux
 
 * *libasound* and *libasound-dev* packages are required
-	
-### Author 
+
+### Author
 
 [Ari Russo](http://github.com/arirusso) <ari.russo at gmail.com>
-		
+
 ### License
 
 Apache 2.0, See the file LICENSE
 
-Copyright (c) 2010-2014 Ari Russo  
+Copyright (c) 2010-2016 Ari Russo  

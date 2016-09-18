@@ -1,7 +1,8 @@
 #
 # Realtime MIDI IO for Ruby
 #
-# (c)2010-2014 Ari Russo and licensed under the Apache 2.0 License
+# (c)2010-2016 Ari Russo
+# Licensed under the Apache 2.0 License
 #
 
 # modules
@@ -17,7 +18,7 @@ require "unimidi/output"
 
 module UniMIDI
 
-  VERSION = "0.4.7"
+  VERSION = "0.4.6"
 
   Platform.bootstrap
 
