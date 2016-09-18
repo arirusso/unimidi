@@ -14,6 +14,26 @@ module TestHelper
     ENV["_system_name"] != "OSX" || !RUBY_PLATFORM.include?("java")
   end
 
+  def mock_devices
+    if @mock_devices.nil?
+      @mock_devices = {
+        input: [],
+        output: []
+      }
+      2.times do
+        input = Object.new
+        input.stubs(:type).returns(:input)
+        @mock_devices[:input] << input
+      end
+      2.times do
+        input = Object.new
+        input.stubs(:type).returns(:output)
+        @mock_devices[:output] << input
+      end
+    end
+    @mock_devices
+  end
+
   def devices
     if @devices.nil?
       @devices = {}

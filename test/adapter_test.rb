@@ -21,11 +21,16 @@ class UniMIDI::AdapterTest < Minitest::Test
     context "Device.count" do
 
       setup do
+        UniMIDI::Input.stubs(:all).returns(TestHelper.mock_devices[:input])
         @inputs = UniMIDI::Input.all
       end
 
+      teardown do
+        UniMIDI::Input.unstub(:all)
+      end
+
       should "count all of the inputs" do
-        assert_equal @inputs.count, UniMIDI::Input.count
+        assert_equal TestHelper.mock_devices[:input].count, UniMIDI::Input.count
       end
 
     end
