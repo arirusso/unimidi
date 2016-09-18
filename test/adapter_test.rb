@@ -6,14 +6,28 @@ class UniMIDI::AdapterTest < Minitest::Test
 
     context "Device#type" do
 
-      should "be an input" do
-        input = TestHelper.devices[:input]
-        assert_equal(:input, input.type)
+      context "input" do
+
+        setup do
+          @input = TestHelper.mock_devices[:input].sample
+        end
+
+        should "be an input" do
+          assert_equal(:input, @input.type)
+        end
+
       end
 
-      should "be an output" do
-        output = TestHelper.devices[:output]
-        assert_equal(:output, output.type)
+      context "output" do
+
+        setup do
+          @output = TestHelper.mock_devices[:output].sample
+        end
+
+        should "be an output" do
+          assert_equal(:output, @output.type)
+        end
+
       end
 
     end
