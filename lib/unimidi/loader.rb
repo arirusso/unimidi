@@ -11,6 +11,7 @@ module UniMIDI
         @loader = loader
       end
 
+      # Get all MIDI devices
       # @param [Hash] options
       # @option options [Symbol] :direction Return only a particular direction of device eg :input, :output
       # @return [Array<Input>, Array<Output>]
