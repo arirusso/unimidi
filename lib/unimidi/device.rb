@@ -68,33 +68,38 @@ module UniMIDI
       def use(index, &block)
         index = case index
                 when :first then 0
-                when :last then all.size - 1
+                when :last then all.count - 1
                 else index
                 end
-        use_device(all[index], &block)
+        use_device(at(index), &block)
       end
       alias_method :open, :use
 
       # Select the device at the given index
       # @param [Fixnum] index
       # @return [Input, Output]
-      def [](index)
+      def at(index)
         all[index]
       end
+      alias_method :[], :at
 
       private
 
       # The direction of the device eg "input", "output"
       # @return [String]
       def get_direction
-        self.name.split("::").last.downcase
+        name.split("::").last.downcase
       end
 
       # Enable the given device
       # @param [Input, Output] device
       # @return [Input, Output]
       def use_device(device, &block)
-        device.open(&block) unless device.enabled?
+        if device.enabled?
+          yield(device) if block_given?
+        else
+          device.open(&block)
+        end
         device
       end
 
