@@ -26,7 +26,7 @@ module TestHelper
         input.stubs(:name).returns("MIDI Input #{i}")
         @mock_devices[:input] << input
       end
-      2.times do |i|
+      3.times do |i|
         input = Object.new
         input.stubs(:type).returns(:output)
         input.stubs(:name).returns("MIDI Output #{i}")
