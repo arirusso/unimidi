@@ -4,12 +4,22 @@ class UniMIDI::AdapterTest < Minitest::Test
 
   context "Adapter" do
 
+    setup do
+      UniMIDI::Input.stubs(:all).returns(TestHelper.mock_devices[:input])
+      UniMIDI::Output.stubs(:all).returns(TestHelper.mock_devices[:output])
+    end
+
+    teardown do
+      UniMIDI::Input.unstub(:all)
+      UniMIDI::Output.unstub(:all)
+    end
+
     context "Device#type" do
 
       context "input" do
 
         setup do
-          @input = TestHelper.mock_devices[:input].sample
+          @input = UniMIDI::Input.all.sample
         end
 
         should "be an input" do
@@ -21,7 +31,8 @@ class UniMIDI::AdapterTest < Minitest::Test
       context "output" do
 
         setup do
-          @output = TestHelper.mock_devices[:output].sample
+          UniMIDI::Input.stubs(:all).returns(TestHelper.mock_devices[:input])
+          @output = UniMIDI::Output.all.sample
         end
 
         should "be an output" do
@@ -35,12 +46,7 @@ class UniMIDI::AdapterTest < Minitest::Test
     context "Device.count" do
 
       setup do
-        UniMIDI::Input.stubs(:all).returns(TestHelper.mock_devices[:input])
         @inputs = UniMIDI::Input.all
-      end
-
-      teardown do
-        UniMIDI::Input.unstub(:all)
       end
 
       should "count all of the inputs" do
@@ -52,13 +58,12 @@ class UniMIDI::AdapterTest < Minitest::Test
     context "Device.find_by_name" do
 
       setup do
-        index = rand(0..(UniMIDI::Output.count-1))
-        @output = UniMIDI::Output.all[index]
+        @name = UniMIDI::Output.all.map(&:name).sample
+        @output = UniMIDI::Output.find_by_name(@name)
       end
 
       should "select the correct input" do
-        result = UniMIDI::Output.find_by_name(@output.name)
-        assert_equal @output, result
+        assert_equal @name, @output.name
       end
 
     end
@@ -66,18 +71,23 @@ class UniMIDI::AdapterTest < Minitest::Test
     context "Device.first" do
 
       setup do
-        @output = UniMIDI::Output.all.first
+        @output_to_test = UniMIDI::Output.all[0]
+        @output_to_test.expects(:open).returns(true)
+        @output_to_test.expects(:enabled?).returns(true)
+        @output = UniMIDI::Output.first
       end
 
-      should "open the output" do
-        @output.expects(:open)
-        output = UniMIDI::Output.first
-        @output.unstub(:open)
+      teardown do
+        @output_to_test.unstub(:open)
+        @output_to_test.unstub(:enabled?)   
       end
 
-      should "return the correct output" do
-        output = UniMIDI::Output.first
-        assert_equal @output, output
+      teardown do
+        @output_to_test.unstub(:open)
+      end
+
+      should "return the first output" do
+        assert_equal @output_to_test, @output
       end
     end
 

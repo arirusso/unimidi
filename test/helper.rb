@@ -20,14 +20,16 @@ module TestHelper
         input: [],
         output: []
       }
-      2.times do
+      2.times do |i|
         input = Object.new
         input.stubs(:type).returns(:input)
+        input.stubs(:name).returns("MIDI Input #{i}")
         @mock_devices[:input] << input
       end
-      2.times do
+      2.times do |i|
         input = Object.new
         input.stubs(:type).returns(:output)
+        input.stubs(:name).returns("MIDI Output #{i}")
         @mock_devices[:output] << input
       end
     end
