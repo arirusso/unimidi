@@ -155,6 +155,12 @@ module UniMIDI
         end
       end
 
+      # Returns true if the device is not enabled
+      # @return [Boolean]
+      def closed?
+        !@enabled
+      end
+
       # Add attributes for the device instance
       # :direction, :id, :name
       def self.included(base)
