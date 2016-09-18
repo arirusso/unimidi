@@ -1,4 +1,4 @@
-require 'helper'
+require "helper"
 
 class UniMIDI::TypeConversionTest < Minitest::Test
 
