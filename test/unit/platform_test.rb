@@ -1,4 +1,4 @@
-require "helper"
+require "unit/helper"
 
 class UniMIDI::PlatformTest < Minitest::Test
 

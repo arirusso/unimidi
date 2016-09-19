@@ -1,12 +1,12 @@
-require "helper"
+require "unit/helper"
 
 class UniMIDI::DeviceTest < Minitest::Test
 
   context "Device" do
 
     setup do
-      UniMIDI::Input.stubs(:all).returns(TestHelper.mock_devices[:input])
-      UniMIDI::Output.stubs(:all).returns(TestHelper.mock_devices[:output])
+      UniMIDI::Input.stubs(:all).returns(TestHelper::Unit.mock_devices[:input])
+      UniMIDI::Output.stubs(:all).returns(TestHelper::Unit.mock_devices[:output])
     end
 
     teardown do
@@ -33,7 +33,7 @@ class UniMIDI::DeviceTest < Minitest::Test
         context "output" do
 
           setup do
-            UniMIDI::Input.stubs(:all).returns(TestHelper.mock_devices[:input])
+            UniMIDI::Input.stubs(:all).returns(TestHelper::Unit.mock_devices[:input])
             @output = UniMIDI::Output.all.sample
           end
 

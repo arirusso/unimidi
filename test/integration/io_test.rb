@@ -1,4 +1,4 @@
-require "helper"
+require "integration/helper"
 
 class UniMIDI::IoTest < Minitest::Test
 
@@ -6,8 +6,8 @@ class UniMIDI::IoTest < Minitest::Test
   context "UniMIDI" do
 
     setup do
-      @input = TestHelper.devices[:input].open
-      @output = TestHelper.devices[:output].open
+      @input = TestHelper::Integration.devices[:input].open
+      @output = TestHelper::Integration.devices[:output].open
     end
 
     teardown do
@@ -20,7 +20,7 @@ class UniMIDI::IoTest < Minitest::Test
       context "using numeric bytes" do
 
         setup do
-          @messages = TestHelper.numeric_messages
+          @messages = TestHelper::Integration.numeric_messages
           @messages_arr = @messages.inject(&:+).flatten
           @received_arr = []
           @pointer = 0
@@ -48,7 +48,7 @@ class UniMIDI::IoTest < Minitest::Test
       context "using byte Strings" do
 
         setup do
-          @messages = TestHelper.string_messages
+          @messages = TestHelper::Integration.string_messages
           @messages_str = @messages.join
           @received_str = ""
           @pointer = 0
@@ -78,7 +78,7 @@ class UniMIDI::IoTest < Minitest::Test
       context "using MIDIMessages" do
 
         setup do
-          @messages = TestHelper.message_objects
+          @messages = TestHelper::Integration.message_objects
           @messages_arr = @messages.map(&:to_bytes).flatten
           @received_arr = []
           @pointer = 0

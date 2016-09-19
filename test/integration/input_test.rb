@@ -1,4 +1,4 @@
-require "helper"
+require "integration/helper"
 
 class UniMIDI::InputTest < Minitest::Test
 
@@ -8,9 +8,9 @@ class UniMIDI::InputTest < Minitest::Test
 
       setup do
         sleep(1)
-        @input = TestHelper.devices[:input].open
-        @output = TestHelper.devices[:output].open
-        @messages = TestHelper.numeric_messages
+        @input = TestHelper::Integration.devices[:input].open
+        @output = TestHelper::Integration.devices[:output].open
+        @messages = TestHelper::Integration.numeric_messages
         @bytes = []
       end
 
