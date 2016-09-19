@@ -8,12 +8,12 @@
 # modules
 require "unimidi/command"
 require "unimidi/device"
-require "unimidi/loader"
 require "unimidi/platform"
 require "unimidi/type_conversion"
 
 # classes
 require "unimidi/input"
+require "unimidi/loader"
 require "unimidi/output"
 
 module UniMIDI
