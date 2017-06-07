@@ -56,7 +56,7 @@ module UniMIDI
       #   [144, 60, 100, 128, 60, 100, 144, 40, 120]
       #
       # @param [*Object] args
-      # @return [Array<Fixnum>]
+      # @return [Array<Integer>]
       def gets_data(*args)
         arr = gets(*args)
         arr.map { |msg| msg[:data] }.inject(:+)

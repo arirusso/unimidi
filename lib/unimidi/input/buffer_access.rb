@@ -35,7 +35,7 @@ module UniMIDI
       # Gets any messages in the buffer in the same format as Input#gets_data. . This doesn't remove
       # the messages from the buffer or have any effect on the StreamReader pointer position
       # @param [*Object] args
-      # @return [Array<Fixnum>]
+      # @return [Array<Integer>]
       def gets_buffer_data(*args)
         @device.buffer.map { |msg| msg[:data] }
       end

@@ -12,7 +12,7 @@ module UniMIDI
       Loader.devices(:direction => :output)
     end
 
-    # Sends a message to the output. 
+    # Sends a message to the output.
     #
     # The message format can be:
     #
@@ -21,18 +21,18 @@ module UniMIDI
     # 3. A string of bytes eg "904040"
     # 4. An array of strings ["904040", "804040"]
     #
-    # @param [*Array<Fixnum>, *Array<String>, *Fixnum, *String] messages
-    # @return [Array<Fixnum>, Array<String>]
+    # @param [*Array<Integer>, *Array<String>, *Integer, *String] messages
+    # @return [Array<Integer>, Array<String>]
     def puts(*messages)
       message = messages.first
       case message
       when Array then messages.each { |array| puts(*array.flatten) }
-      when Fixnum then puts_bytes(*messages)
+      when Integer then puts_bytes(*messages)
       when String then puts_s(*messages)
       else
         if message.respond_to?(:to_bytes)
           puts_bytes(*message.to_bytes.flatten)
-        elsif message.respond_to?(:to_a) 
+        elsif message.respond_to?(:to_a)
           puts_bytes(*message.to_a.flatten)
         end
       end
@@ -51,8 +51,8 @@ module UniMIDI
 
     # Sends a message to the output in a form of bytes eg output.puts_bytes(0x90, 0x40, 0x40).
     # This method does not do type checking.
-    # @param [*Array<Fixnum>] messages
-    # @return [Array<Fixnum>, Array<Array<Fixnum>>]
+    # @param [*Array<Integer>] messages
+    # @return [Array<Integer>, Array<Array<Integer>>]
     def puts_bytes(*messages)
       @device.puts_bytes(*messages)
       messages.count < 2 ? messages[0] : messages

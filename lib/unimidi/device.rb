@@ -63,7 +63,7 @@ module UniMIDI
       end
 
       # Select the device at the given index and enable it
-      # @param [Fixnum] index
+      # @param [Integer] index
       # @return [Input, Output]
       def use(index, &block)
         index = case index
@@ -76,7 +76,7 @@ module UniMIDI
       alias_method :open, :use
 
       # Select the device at the given index
-      # @param [Fixnum] index
+      # @param [Integer] index
       # @return [Input, Output]
       def at(index)
         all[index]
