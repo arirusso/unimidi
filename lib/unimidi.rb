@@ -1,7 +1,8 @@
 #
+# UniMIDI
 # Realtime MIDI IO for Ruby
 #
-# (c)2010-2016 Ari Russo
+# (c)2010-2017 Ari Russo
 # Licensed under the Apache 2.0 License
 #
 
