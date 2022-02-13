@@ -4,7 +4,7 @@
 # UniMIDI
 # Realtime MIDI IO for Ruby
 #
-# (c)2010-2017 Ari Russo
+# (c)2010-2022 Ari Russo
 # Licensed under the Apache 2.0 License
 #
 
@@ -20,7 +20,7 @@ require 'unimidi/loader'
 require 'unimidi/output'
 
 module UniMIDI
-  VERSION = '0.4.8'
+  VERSION = '0.5.0'
 
   Platform.bootstrap
 end
