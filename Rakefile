@@ -1,32 +1,18 @@
-$:.unshift File.join( File.dirname( __FILE__ ))
-$:.unshift File.join( File.dirname( __FILE__ ), 'lib')
+# frozen_string_literal: true
+
+$LOAD_PATH.unshift File.join(File.dirname(__FILE__))
+$LOAD_PATH.unshift File.join(File.dirname(__FILE__), 'lib')
 
 require 'rake'
-require 'rake/testtask'
+require 'rspec/core/rake_task'
 require 'unimidi'
 
-namespace(:test) do
-  task :all => [:unit, :integration]
+RSpec::Core::RakeTask.new(:spec)
 
-  Rake::TestTask.new(:integration) do |t|
-    t.libs << "test"
-    t.test_files = FileList["test/integration/**/*_test.rb"]
-    t.verbose = true
-  end
-
-  Rake::TestTask.new(:unit) do |t|
-    t.libs << "test"
-    t.test_files = FileList["test/unit/**/*_test.rb"]
-    t.verbose = true
-  end
-end
-
-Rake::Task['test'].enhance ["test:all"]
-
-platforms = ["generic", "x86_64-darwin10.7.0", "i386-mingw32", "java", "i686-linux"]
+platforms = %w[generic x86_64-darwin10.7.0 i386-mingw32 java i686-linux]
 
 task(:build) do
-  require "unimidi-gemspec"
+  require 'unimidi-gemspec'
   platforms.each do |platform|
     UniMIDI::Gemspec.new(platform)
     filename = "unimidi-#{platform}.gemspec"
@@ -35,10 +21,10 @@ task(:build) do
   end
 end
 
-task(:release => :build) do
+task(release: :build) do
   platforms.each do |platform|
     system "gem push unimidi-#{UniMIDI::VERSION}-#{platform}.gem"
   end
 end
 
-task(:default => [:test])
+task default: :spec

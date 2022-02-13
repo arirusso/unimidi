@@ -1,15 +1,13 @@
-require "alsa-rawmidi"
+# frozen_string_literal: true
+
+require 'alsa-rawmidi'
 
 module UniMIDI
-
   module Adapter
-
     # Load underlying devices using the alsa-rawmidi gem
     module AlsaRawMIDI
-
       module Loader
-
-        extend self
+        module_function
 
         # @return [Array<AlsaRawMIDI::Input>]
         def inputs
@@ -20,11 +18,7 @@ module UniMIDI
         def outputs
           ::AlsaRawMIDI::Device.all_by_type[:output]
         end
-
       end
-
     end
-
   end
-
 end

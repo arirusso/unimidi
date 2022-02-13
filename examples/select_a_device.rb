@@ -1,7 +1,9 @@
 #!/usr/bin/env ruby
-$:.unshift File.join( File.dirname( __FILE__ ), '../lib')
+# frozen_string_literal: true
 
-require "unimidi"
+$LOAD_PATH.unshift File.join(File.dirname(__FILE__), '../lib')
+
+require 'unimidi'
 
 #
 # This is an example that explains how to select an output.
@@ -49,7 +51,7 @@ output.open
 
 # It's also possible to select a device by name
 
-output = UniMIDI::Output.find_by_name("Roland UM-2 (1)").open
+output = UniMIDI::Output.find_by_name('Roland UM-2 (1)').open
 
 # or using regex match
 

@@ -1,8 +1,8 @@
-module UniMIDI
+# frozen_string_literal: true
 
+module UniMIDI
   # Deal with different dependencies between different user environments
   module Platform
-
     extend self
 
     # Loads the proper MIDI library and adapter for the user's environment
@@ -15,22 +15,20 @@ module UniMIDI
 
     def platform_lib
       case RUBY_PLATFORM
-        when /darwin/ then "ffi-coremidi"
-        when /java/ then "midi-jruby"
-        when /linux/ then "alsa-rawmidi"
-        when /mingw/ then "midi-winmm"
+      when /darwin/ then 'ffi-coremidi'
+      when /java/ then 'midi-jruby'
+      when /linux/ then 'alsa-rawmidi'
+      when /mingw/ then 'midi-winmm'
       end
     end
 
     def platform_module
       case RUBY_PLATFORM
-        when /darwin/ then Adapter::CoreMIDI
-        when /java/ then Adapter::MIDIJRuby
-        when /linux/ then Adapter::AlsaRawMIDI
-        when /mingw/ then Adapter::MIDIWinMM
+      when /darwin/ then Adapter::CoreMIDI
+      when /java/ then Adapter::MIDIJRuby
+      when /linux/ then Adapter::AlsaRawMIDI
+      when /mingw/ then Adapter::MIDIWinMM
       end
     end
-
   end
-
 end
