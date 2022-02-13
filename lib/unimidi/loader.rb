@@ -1,10 +1,9 @@
-module UniMIDI
+# frozen_string_literal: true
 
+module UniMIDI
   # Populate UniMIDI devices using the underlying device objects from the platform-specific gems
   class Loader
-
     class << self
-
       # Use the given platform-specific adapter to load devices
       # @param [UniMIDI::Adapter::Loader] loader
       def use(loader)
@@ -20,14 +19,12 @@ module UniMIDI
           inputs = @loader.inputs.map { |device| ::UniMIDI::Input.new(device) }
           outputs = @loader.outputs.map { |device| ::UniMIDI::Output.new(device) }
           @devices = {
-            :input => inputs,
-            :output => outputs
+            input: inputs,
+            output: outputs
           }
         end
         options[:direction].nil? ? @devices.values.flatten : @devices[options[:direction]]
       end
-
     end
-
   end
 end

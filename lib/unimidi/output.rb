@@ -1,15 +1,15 @@
-module UniMIDI
+# frozen_string_literal: true
 
+module UniMIDI
   # A MIDI output device
   class Output
-
     extend Device::ClassMethods
     include Device::InstanceMethods
 
     # All MIDI output devices -- used to populate the class
     # @return [Array<Output>]
     def self.all
-      Loader.devices(:direction => :output)
+      Loader.devices(direction: :output)
     end
 
     # Sends a message to the output.
@@ -46,8 +46,8 @@ module UniMIDI
       @device.puts_s(*messages)
       messages.count < 2 ? messages[0] : messages
     end
-    alias_method :puts_bytestr, :puts_s
-    alias_method :puts_hex, :puts_s
+    alias puts_bytestr puts_s
+    alias puts_hex puts_s
 
     # Sends a message to the output in a form of bytes eg output.puts_bytes(0x90, 0x40, 0x40).
     # This method does not do type checking.
@@ -57,7 +57,5 @@ module UniMIDI
       @device.puts_bytes(*messages)
       messages.count < 2 ? messages[0] : messages
     end
-
   end
-
 end

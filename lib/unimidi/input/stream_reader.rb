@@ -1,9 +1,8 @@
+# frozen_string_literal: true
+
 module UniMIDI
-
   class Input
-
     module StreamReader
-
       # Returns any data in the input buffer that have been received since the last call to a
       # StreamReader method. If a StreamReader method has not yet been called, all data received
       # since the program was initialized will be returned
@@ -45,8 +44,8 @@ module UniMIDI
       rescue SystemExit, Interrupt
         exit
       end
-      alias_method :gets_bytestr, :gets_s
-      alias_method :gets_hex, :gets_s
+      alias gets_bytestr gets_s
+      alias gets_hex gets_s
 
       # Returns any data in the input buffer that have been received since the last call to a
       # StreamReader method. If a StreamReader method has not yet been called, all data received
@@ -75,11 +74,8 @@ module UniMIDI
         arr = gets_bytestr(*args)
         arr.map { |msg| msg[:data] }.join
       end
-      alias_method :gets_data_bytestr, :gets_data_s
-      alias_method :gets_data_hex, :gets_data_s
-
+      alias gets_data_bytestr gets_data_s
+      alias gets_data_hex gets_data_s
     end
-
   end
-
 end

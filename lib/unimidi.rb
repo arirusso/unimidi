@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # UniMIDI
 # Realtime MIDI IO for Ruby
@@ -7,20 +9,18 @@
 #
 
 # modules
-require "unimidi/command"
-require "unimidi/device"
-require "unimidi/platform"
-require "unimidi/type_conversion"
+require 'unimidi/command'
+require 'unimidi/device'
+require 'unimidi/platform'
+require 'unimidi/type_conversion'
 
 # classes
-require "unimidi/input"
-require "unimidi/loader"
-require "unimidi/output"
+require 'unimidi/input'
+require 'unimidi/loader'
+require 'unimidi/output'
 
 module UniMIDI
-
-  VERSION = "0.4.8"
+  VERSION = '0.4.8'
 
   Platform.bootstrap
-
 end

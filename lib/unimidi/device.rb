@@ -1,16 +1,15 @@
-module UniMIDI
+# frozen_string_literal: true
 
+module UniMIDI
   # Common logic that is shared by both Input and Output devices
   module Device
-
     # Methods that are shared by both Input and Output classes
     module ClassMethods
-
       include Enumerable
 
       # Iterate over all devices of this direction (eg Input, Output)
       def each(&block)
-        all.each { |device| yield(device) }
+        all.each(&block)
       end
 
       # Prints ids and names of each device to the console
@@ -35,16 +34,20 @@ module UniMIDI
       def gets(&block)
         device = nil
         direction = get_direction
-        puts ""
+        puts ''
         puts "Select a MIDI #{direction}..."
         while device.nil?
           list
-          print "> "
+          print '> '
           selection = $stdin.gets.chomp
-          if selection != ""
-            selection = Integer(selection) rescue nil
-            device = all.find { |d| d.id == selection } unless selection.nil?
+          next unless selection != ''
+
+          selection = begin
+            Integer(selection)
+          rescue StandardError
+            nil
           end
+          device = all.find { |d| d.id == selection } unless selection.nil?
         end
         device.open(&block)
         device
@@ -73,7 +76,7 @@ module UniMIDI
                 end
         use_device(at(index), &block)
       end
-      alias_method :open, :use
+      alias open use
 
       # Select the device at the given index
       # @param [Integer] index
@@ -81,14 +84,14 @@ module UniMIDI
       def at(index)
         all[index]
       end
-      alias_method :[], :at
+      alias [] at
 
       private
 
       # The direction of the device eg "input", "output"
       # @return [String]
       def get_direction
-        name.split("::").last.downcase
+        name.split('::').last.downcase
       end
 
       # Enable the given device
@@ -102,12 +105,10 @@ module UniMIDI
         end
         device
       end
-
     end
 
     # Methods that are shared by both Input and Output instances
     module InstanceMethods
-
       # @param [AlsaRawMIDI::Input, AlsaRawMIDI::Output, CoreMIDI::Destination, CoreMIDI::Source, MIDIJRuby::Input, MIDIJRuby::Output, MIDIWinMM::Input, MIDIWinMM::Output] device
       def initialize(device)
         @device = device
@@ -121,7 +122,7 @@ module UniMIDI
       # Can be passed a block to which the device will be passed in as the yieldparam
       # @param [*Object] args
       # @return [Input, Output] self
-      def open(*args, &block)
+      def open(*args)
         unless @enabled
           @device.open(*args)
           @enabled = true
@@ -182,9 +183,9 @@ module UniMIDI
       # Populate the direction attribute
       def populate_direction
         @direction = case @device.type
-                when :source, :input then :input
-                when :destination, :output then :output
-                end
+                     when :source, :input then :input
+                     when :destination, :output then :output
+                     end
       end
 
       # Populate attributes from the underlying device object
@@ -193,9 +194,6 @@ module UniMIDI
         @name = @device.name
         populate_direction
       end
-
     end
-
   end
-
 end
