@@ -20,7 +20,7 @@ require 'unimidi/loader'
 require 'unimidi/output'
 
 module UniMIDI
-  VERSION = '0.5.0'
+  VERSION = '0.5.1'
 
   Platform.bootstrap
 end
