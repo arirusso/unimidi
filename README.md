@@ -14,8 +14,6 @@ Also see [MicroMIDI](http://github.com/arirusso/micromidi) which builds a full M
 
 ### Requirements
 
-Using Ruby 1.9.2 or JRuby 1.6.1 (or newer) is strongly recommended.  JRuby should be run in 1.9 mode where applicable
-
 UniMIDI uses one of the following libraries, depending on which platform you're using it on.  The necessary library should install automatically with the unimidi gem.
 
 Platform
@@ -57,7 +55,7 @@ UniMIDI includes a set of tests which assume that an output is connected to an i
 
 The tests can be run using
 
-`rake test`
+`rake spec`
 
 See below for additional notes on testing with JRuby
 
@@ -69,7 +67,6 @@ See below for additional notes on testing with JRuby
 
 ##### JRuby
 
-* You must be in 1.9 mode.  This is normally accomplished by passing --1.9 to JRuby at the command line.  For testing in 1.9 mode, use `jruby --1.9 -S rake test`
 * javax.sound has some documented issues with SysEx messages in some versions OSX Snow Leopard which do affect this library.
 
 ##### Linux
