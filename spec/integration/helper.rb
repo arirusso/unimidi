@@ -9,7 +9,7 @@ module SpecHelper
     module_function
 
     def sysex_ok?
-      ENV['_system_name'] != 'OSX' || !RUBY_PLATFORM.include?('java')
+      !RUBY_PLATFORM.include?('java') || RbConfig::CONFIG["host_os"] != 'darwin'
     end
 
     def devices

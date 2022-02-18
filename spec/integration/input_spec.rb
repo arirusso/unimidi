@@ -8,7 +8,7 @@ describe UniMIDI::Input do
     let(:output) { SpecHelper::Integration.devices[:output].open }
     let(:messages) { SpecHelper::Integration.numeric_messages }
     before do
-      sleep 0.1
+      sleep 0.3
       input.buffer.clear
     end
 
@@ -24,7 +24,7 @@ describe UniMIDI::Input do
         p "sending: #{message}"
         output.puts(message)
         sent_bytes += message
-        sleep 0.1
+        sleep 0.3
         buffer = input.buffer.map { |m| m[:data] }.flatten
         p "received: #{buffer}"
         expect(buffer).to eq(sent_bytes)

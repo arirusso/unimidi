@@ -6,7 +6,10 @@ describe 'UniMIDI IO' do
   # these tests assume that TestOutput is connected to TestInput
   let(:input) { SpecHelper::Integration.devices[:input].open }
   let(:output) { SpecHelper::Integration.devices[:output].open }
-
+  before do
+    sleep 0.3
+    input.buffer.clear
+  end
   after do
     input.close
     output.close
@@ -23,7 +26,7 @@ describe 'UniMIDI IO' do
           p "sending: #{message}"
 
           output.puts(message)
-          sleep(0.1)
+          sleep 0.3
           received = input.gets.map { |m| m[:data] }.flatten
 
           p "received: #{received}"
@@ -46,7 +49,7 @@ describe 'UniMIDI IO' do
           p "sending: #{message}"
 
           output.puts(message)
-          sleep(0.1)
+          sleep 0.3
           received = input.gets_bytestr.map { |m| m[:data] }.flatten.join
           p "received: #{received}"
 
@@ -69,7 +72,7 @@ describe 'UniMIDI IO' do
           p "sending: #{message.inspect}"
 
           output.puts(message)
-          sleep(0.1)
+          sleep 0.3
           received = input.gets.map { |m| m[:data] }.flatten
 
           p "received: #{received}"
